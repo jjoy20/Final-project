@@ -15,7 +15,7 @@ namespace NBDcase.Data.NBDMigrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("NBD")
-                .HasAnnotation("ProductVersion", "3.1.10");
+                .HasAnnotation("ProductVersion", "3.1.11");
 
             modelBuilder.Entity("NBDcase.Models.Bid", b =>
                 {
@@ -53,20 +53,15 @@ namespace NBDcase.Data.NBDMigrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
 
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
                     b.Property<string>("Contact")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(50);
 
                     b.Property<long>("Phone")
                         .HasColumnType("INTEGER");

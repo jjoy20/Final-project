@@ -9,7 +9,7 @@ using NBDcase.Data;
 namespace NBDcase.Data.NBDMigrations
 {
     [DbContext(typeof(NBDContext))]
-    [Migration("20210126173549_Initial")]
+    [Migration("20210130211947_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,7 +17,7 @@ namespace NBDcase.Data.NBDMigrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("NBD")
-                .HasAnnotation("ProductVersion", "3.1.10");
+                .HasAnnotation("ProductVersion", "3.1.11");
 
             modelBuilder.Entity("NBDcase.Models.Bid", b =>
                 {
@@ -55,20 +55,15 @@ namespace NBDcase.Data.NBDMigrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
 
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
                     b.Property<string>("Contact")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(50);
 
                     b.Property<long>("Phone")
                         .HasColumnType("INTEGER");
