@@ -17,8 +17,7 @@ namespace NBDcase.Data.NBDMigrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    ClientName = table.Column<string>(maxLength: 50, nullable: false),
                     Address = table.Column<string>(maxLength: 255, nullable: false),
                     Contact = table.Column<string>(maxLength: 255, nullable: false),
                     Phone = table.Column<long>(nullable: false)
