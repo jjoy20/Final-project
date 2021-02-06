@@ -274,8 +274,7 @@ namespace NBDcase.Data
                         {
                             LaborType = "Production worker",
                             LaborCost = 18,
-                            LaborPrice = 50,
-                            StaffID = context.Staffs.FirstOrDefault(s => s.PositionName == "Designer").ID
+                            LaborPrice = 50                         
                         }
                         );
                     context.SaveChanges();
@@ -308,8 +307,7 @@ namespace NBDcase.Data
                             Quantity = 20,
                             Description = "GFN48",
                             Size = "48in",
-                            UnitPrice = 457,
-                            InventoryID = context.Inventories.FirstOrDefault(i => i.Code == "Lacco").ID
+                            UnitPrice = 457                            
                         }
                         );
                     context.SaveChanges();

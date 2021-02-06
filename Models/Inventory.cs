@@ -8,11 +8,7 @@ namespace NBDcase.Models
 {
     public class Inventory
     {
-        public Inventory()
-        {
-            Materials = new HashSet<Material>();
-        }
-        public int ID { get; set; }
+         public int ID { get; set; }
 
         [Display(Name = "Code")]
         [Required(ErrorMessage = "You cannot leave code blank.")]
@@ -35,6 +31,11 @@ namespace NBDcase.Models
 
         public Bid Bid { get; set; }
 
-        public ICollection<Material> Materials { get; set; }
+        [Required(ErrorMessage = "You must select a Material.")]
+        [Display(Name = "Material")]
+        public int MaterialID { get; set; }
+
+        public Material Material { get; set; }
+
     }
 }

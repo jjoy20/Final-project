@@ -40,6 +40,15 @@ namespace NBDcase.Models
 
         public Project Project { get; set; }
 
+        [Required(ErrorMessage = "ApprovalNBD is required.")]
+        [Display(Name = "Approval")]
+        public bool ApprovalNBD { get; set; }
+
+        [Required(ErrorMessage = "ApprovalClient is required.")]
+        [Display(Name = "Approval")]
+        public bool ApprovalClient { get; set; }
+
+
         [Display(Name = "Staffs")]
         public ICollection<Staff> Staffs { get; set; }
 

@@ -22,7 +22,7 @@ namespace NBDcase.Controllers
         // GET: Materials
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.Materials.Include(m => m.Inventory);
+            var nBDContext = _context.Materials.Include(m => m.Category);
             return View(await nBDContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace NBDcase.Controllers
             }
 
             var material = await _context.Materials
-                .Include(m => m.Inventory)
+                .Include(m => m.Category)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (material == null)
             {
@@ -48,7 +48,7 @@ namespace NBDcase.Controllers
         // GET: Materials/Create
         public IActionResult Create()
         {
-            ViewData["InventoryID"] = new SelectList(_context.Inventories, "ID", "Code");
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Type,Quantity,Description,Size,UnitPrice,InventoryID")] Material material)
+        public async Task<IActionResult> Create([Bind("ID,Type,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace NBDcase.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InventoryID"] = new SelectList(_context.Inventories, "ID", "Code", material.InventoryID);
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
             return View(material);
         }
 
@@ -82,7 +82,7 @@ namespace NBDcase.Controllers
             {
                 return NotFound();
             }
-            ViewData["InventoryID"] = new SelectList(_context.Inventories, "ID", "Code", material.InventoryID);
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
             return View(material);
         }
 
@@ -91,7 +91,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Type,Quantity,Description,Size,UnitPrice,InventoryID")] Material material)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Type,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
         {
             if (id != material.ID)
             {
@@ -118,7 +118,7 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InventoryID"] = new SelectList(_context.Inventories, "ID", "Code", material.InventoryID);
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
             return View(material);
         }
 
@@ -131,7 +131,7 @@ namespace NBDcase.Controllers
             }
 
             var material = await _context.Materials
-                .Include(m => m.Inventory)
+                .Include(m => m.Category)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (material == null)
             {

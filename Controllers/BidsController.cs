@@ -57,7 +57,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,BidDate,BidAmount,BidHours,ProjectID")] Bid bid)
+        public async Task<IActionResult> Create([Bind("ID,BidDate,BidAmount,BidHours,ProjectID,ApprovalNBD,ApprovalClient")] Bid bid)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,BidDate,BidAmount,BidHours,ProjectID")] Bid bid)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,BidDate,BidAmount,BidHours,ProjectID,ApprovalNBD,ApprovalClient")] Bid bid)
         {
             if (id != bid.ID)
             {

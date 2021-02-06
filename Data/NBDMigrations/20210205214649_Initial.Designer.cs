@@ -9,7 +9,7 @@ using NBDcase.Data;
 namespace NBDcase.Data.NBDMigrations
 {
     [DbContext(typeof(NBDContext))]
-    [Migration("20210130211947_Initial")]
+    [Migration("20210205214649_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,12 @@ namespace NBDcase.Data.NBDMigrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ApprovalClient")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ApprovalNBD")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("BidAmount")
@@ -42,6 +48,22 @@ namespace NBDcase.Data.NBDMigrations
                     b.HasIndex("ProjectID");
 
                     b.ToTable("Bids");
+                });
+
+            modelBuilder.Entity("NBDcase.Models.Category", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("NBDcase.Models.Client", b =>
@@ -92,6 +114,9 @@ namespace NBDcase.Data.NBDMigrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
 
+                    b.Property<int>("MaterialID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Size")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -100,6 +125,8 @@ namespace NBDcase.Data.NBDMigrations
                     b.HasKey("ID");
 
                     b.HasIndex("BidID");
+
+                    b.HasIndex("MaterialID");
 
                     b.ToTable("Inventories");
                 });
@@ -121,12 +148,7 @@ namespace NBDcase.Data.NBDMigrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(50);
 
-                    b.Property<int>("StaffID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("StaffID");
 
                     b.ToTable("Labors");
                 });
@@ -137,13 +159,13 @@ namespace NBDcase.Data.NBDMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
-
-                    b.Property<int>("InventoryID")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
@@ -163,7 +185,7 @@ namespace NBDcase.Data.NBDMigrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("InventoryID");
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Materials");
                 });
@@ -212,6 +234,9 @@ namespace NBDcase.Data.NBDMigrations
                     b.Property<int>("Hours")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("LaborID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("PositionName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -223,6 +248,8 @@ namespace NBDcase.Data.NBDMigrations
                     b.HasKey("ID");
 
                     b.HasIndex("BidID");
+
+                    b.HasIndex("LaborID");
 
                     b.ToTable("Staffs");
                 });
@@ -243,22 +270,19 @@ namespace NBDcase.Data.NBDMigrations
                         .HasForeignKey("BidID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("NBDcase.Models.Labor", b =>
-                {
-                    b.HasOne("NBDcase.Models.Staff", "Staff")
-                        .WithMany("Labors")
-                        .HasForeignKey("StaffID")
+                    b.HasOne("NBDcase.Models.Material", "Material")
+                        .WithMany("Inventories")
+                        .HasForeignKey("MaterialID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("NBDcase.Models.Material", b =>
                 {
-                    b.HasOne("NBDcase.Models.Inventory", "Inventory")
+                    b.HasOne("NBDcase.Models.Category", "Category")
                         .WithMany("Materials")
-                        .HasForeignKey("InventoryID")
+                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -277,6 +301,12 @@ namespace NBDcase.Data.NBDMigrations
                     b.HasOne("NBDcase.Models.Bid", "Bid")
                         .WithMany("Staffs")
                         .HasForeignKey("BidID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("NBDcase.Models.Labor", "Labor")
+                        .WithMany("Staffs")
+                        .HasForeignKey("LaborID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

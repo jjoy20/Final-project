@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NBDcase.Models.Labor>
+﻿@model IEnumerable<NBDcase.Models.Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LaborType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LaborPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LaborCost)
+                @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             <th></th>
         </tr>
@@ -28,13 +22,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LaborType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LaborPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LaborCost)
+                @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

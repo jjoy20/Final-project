@@ -10,22 +10,22 @@ using NBDcase.Models;
 
 namespace NBDcase.Controllers
 {
-    public class LaborsController : Controller
+    public class CategoriesController : Controller
     {
         private readonly NBDContext _context;
 
-        public LaborsController(NBDContext context)
+        public CategoriesController(NBDContext context)
         {
             _context = context;
         }
 
-        // GET: Labors
+        // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Labors.ToListAsync());
+            return View(await _context.Categories.ToListAsync());
         }
 
-        // GET: Labors/Details/5
+        // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var labor = await _context.Labors
+            var category = await _context.Categories
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (labor == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(labor);
+            return View(category);
         }
 
-        // GET: Labors/Create
+        // GET: Categories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Labors/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,LaborType,LaborPrice,LaborCost")] Labor labor)
+        public async Task<IActionResult> Create([Bind("ID,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(labor);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(labor);
+            return View(category);
         }
 
-        // GET: Labors/Edit/5
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var labor = await _context.Labors.FindAsync(id);
-            if (labor == null)
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(labor);
+            return View(category);
         }
 
-        // POST: Labors/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,LaborType,LaborPrice,LaborCost")] Labor labor)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CategoryName")] Category category)
         {
-            if (id != labor.ID)
+            if (id != category.ID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace NBDcase.Controllers
             {
                 try
                 {
-                    _context.Update(labor);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LaborExists(labor.ID))
+                    if (!CategoryExists(category.ID))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(labor);
+            return View(category);
         }
 
-        // GET: Labors/Delete/5
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var labor = await _context.Labors
+            var category = await _context.Categories
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (labor == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(labor);
+            return View(category);
         }
 
-        // POST: Labors/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var labor = await _context.Labors.FindAsync(id);
-            _context.Labors.Remove(labor);
+            var category = await _context.Categories.FindAsync(id);
+            _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LaborExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.Labors.Any(e => e.ID == id);
+            return _context.Categories.Any(e => e.ID == id);
         }
     }
 }

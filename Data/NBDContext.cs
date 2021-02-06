@@ -29,6 +29,8 @@ namespace NBDcase.Data
 
         public DbSet<Staff> Staffs { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("NBD");
@@ -62,18 +64,26 @@ namespace NBDcase.Data
                .OnDelete(DeleteBehavior.Restrict);
 
             //Prevent Cascade Delete 
-            modelBuilder.Entity<Staff>()
-               .HasMany<Labor>(b => b.Labors)
-               .WithOne(l => l.Staff)
-               .HasForeignKey(l => l.StaffID)
+            modelBuilder.Entity<Labor>()
+               .HasMany<Staff>(l => l.Staffs)
+               .WithOne(s => s.Labor)
+               .HasForeignKey(s => s.LaborID)
                .OnDelete(DeleteBehavior.Restrict);
 
             //Prevent Cascade Delete 
-            modelBuilder.Entity<Inventory>()
-               .HasMany<Material>(b => b.Materials)
-               .WithOne(m => m.Inventory)
-               .HasForeignKey(m => m.InventoryID)
+            modelBuilder.Entity<Material>()
+               .HasMany<Inventory>(b => b.Inventories)
+               .WithOne(i => i.Material)
+               .HasForeignKey(i => i.MaterialID)
                .OnDelete(DeleteBehavior.Restrict);
+
+            //Prevent Cascade Delete 
+            modelBuilder.Entity<Category>()
+              .HasMany<Material>(c => c.Materials)
+              .WithOne(p => p.Category)
+              .HasForeignKey(p => p.CategoryID)
+              .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

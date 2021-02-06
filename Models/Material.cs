@@ -9,6 +9,10 @@ namespace NBDcase.Models
 {
     public class Material
     {
+        public Material()
+        {
+            Inventories = new HashSet<Inventory>();
+        }
         public int ID { get; set; }
 
         [Display(Name = "Type")]
@@ -37,10 +41,13 @@ namespace NBDcase.Models
         public decimal UnitPrice { get; set; }
 
 
-        [Required(ErrorMessage = "You must select a Inventory.")]
-        [Display(Name = "Inventory")]
-        public int InventoryID { get; set; }
+        [Required(ErrorMessage = "You must select a Category.")]
+        [Display(Name = "Category")]
+        public int CategoryID { get; set; }
 
-        public Inventory Inventory { get; set; }
+        public Category Category { get; set; }
+
+        public ICollection<Inventory> Inventories { get; set; }
+
     }
 }

@@ -24,6 +24,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Project)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovalNBD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovalClient)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,6 +47,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Project.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalNBD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalClient)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

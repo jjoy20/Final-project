@@ -9,11 +9,6 @@ namespace NBDcase.Models
 {
     public class Staff
     {
-
-        public Staff()
-        {
-            Labors = new HashSet<Labor>();
-        }
         public int ID { get; set; }
 
         [Display(Name = "Position Name")]
@@ -36,9 +31,12 @@ namespace NBDcase.Models
         [Required(ErrorMessage = "You must select a BID.")]
         [Display(Name = "BID")]
         public int BidID { get; set; }
-
         public Bid Bid { get; set; }
 
-        public ICollection<Labor> Labors { get; set; }
+        [Required(ErrorMessage = "You must select a LaborID.")]
+        [Display(Name = "LaborID")]
+        public int LaborID { get; set; }      
+
+        public Labor Labor { get; set; }
     }
 }

@@ -9,6 +9,10 @@ namespace NBDcase.Models
 {
     public class Labor
     {
+        public Labor()
+        {
+            Staffs = new HashSet<Staff>();
+        }
         public int ID { get; set; }
 
         [Display(Name = "Labor Type")]
@@ -29,10 +33,6 @@ namespace NBDcase.Models
         [Range(0, 99999999999999999.99, ErrorMessage = "Invalid labor cost.")]
         public decimal LaborCost { get; set; }
 
-        [Required(ErrorMessage = "You must select a Staff ID")]
-        [Display(Name = "Position Name")]
-        public int StaffID { get; set; }
-
-        public Staff Staff { get; set; }
+        public ICollection<Staff> Staffs { get; set; }
     }
 }

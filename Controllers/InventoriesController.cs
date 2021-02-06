@@ -22,7 +22,7 @@ namespace NBDcase.Controllers
         // GET: Inventories
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.Inventories.Include(i => i.Bid);
+            var nBDContext = _context.Inventories.Include(i => i.Bid).Include(i => i.Material);
             return View(await nBDContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace NBDcase.Controllers
 
             var inventory = await _context.Inventories
                 .Include(i => i.Bid)
+                .Include(i => i.Material)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (inventory == null)
             {
@@ -49,6 +50,7 @@ namespace NBDcase.Controllers
         public IActionResult Create()
         {
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID");
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Code,Description,Size,BidID")] Inventory inventory)
+        public async Task<IActionResult> Create([Bind("ID,Code,Description,Size,BidID,MaterialID")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace NBDcase.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -83,6 +86,7 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -91,7 +95,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Code,Description,Size,BidID")] Inventory inventory)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Code,Description,Size,BidID,MaterialID")] Inventory inventory)
         {
             if (id != inventory.ID)
             {
@@ -119,6 +123,7 @@ namespace NBDcase.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -132,6 +137,7 @@ namespace NBDcase.Controllers
 
             var inventory = await _context.Inventories
                 .Include(i => i.Bid)
+                .Include(i => i.Material)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (inventory == null)
             {
