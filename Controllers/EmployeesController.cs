@@ -10,23 +10,23 @@ using NBDcase.Models;
 
 namespace NBDcase.Controllers
 {
-    public class MaterialsController : Controller
+    public class EmployeesController : Controller
     {
         private readonly NBDContext _context;
 
-        public MaterialsController(NBDContext context)
+        public EmployeesController(NBDContext context)
         {
             _context = context;
         }
 
-        // GET: Materials
+        // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.Materials.Include(m => m.Category);
+            var nBDContext = _context.Employees.Include(e => e.Labor);
             return View(await nBDContext.ToListAsync());
         }
 
-        // GET: Materials/Details/5
+        // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var material = await _context.Materials
-                .Include(m => m.Category)
+            var employee = await _context.Employees
+                .Include(e => e.Labor)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (material == null)
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            return View(material);
+            return View(employee);
         }
 
-        // GET: Materials/Create
+        // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName");
+            ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType");
             return View();
         }
 
-        // POST: Materials/Create
+        // POST: Employees/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Code,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
+        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,eMail,Phone,LaborID")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(material);
+                _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
-            return View(material);
+            ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType", employee.LaborID);
+            return View(employee);
         }
 
-        // GET: Materials/Edit/5
+        // GET: Employees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var material = await _context.Materials.FindAsync(id);
-            if (material == null)
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
-            return View(material);
+            ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType", employee.LaborID);
+            return View(employee);
         }
 
-        // POST: Materials/Edit/5
+        // POST: Employees/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Code,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName,LastName,eMail,Phone,LaborID")] Employee employee)
         {
-            if (id != material.ID)
+            if (id != employee.ID)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace NBDcase.Controllers
             {
                 try
                 {
-                    _context.Update(material);
+                    _context.Update(employee);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MaterialExists(material.ID))
+                    if (!EmployeeExists(employee.ID))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
-            return View(material);
+            ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType", employee.LaborID);
+            return View(employee);
         }
 
-        // GET: Materials/Delete/5
+        // GET: Employees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +130,31 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var material = await _context.Materials
-                .Include(m => m.Category)
+            var employee = await _context.Employees
+                .Include(e => e.Labor)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (material == null)
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            return View(material);
+            return View(employee);
         }
 
-        // POST: Materials/Delete/5
+        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var material = await _context.Materials.FindAsync(id);
-            _context.Materials.Remove(material);
+            var employee = await _context.Employees.FindAsync(id);
+            _context.Employees.Remove(employee);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MaterialExists(int id)
+        private bool EmployeeExists(int id)
         {
-            return _context.Materials.Any(e => e.ID == id);
+            return _context.Employees.Any(e => e.ID == id);
         }
     }
 }

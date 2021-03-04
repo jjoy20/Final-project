@@ -10,20 +10,10 @@ namespace NBDcase.Models
     {
          public int ID { get; set; }
 
-        [Display(Name = "Code")]
-        [Required(ErrorMessage = "You cannot leave code blank.")]
-        [StringLength(10, ErrorMessage = "Code cannot be more than 10 characters long.")]
-        public string Code { get; set; }
-
-        [Display(Name = "Description")]
+        [Display(Name = "Quantity")]
         [Required(ErrorMessage = "You cannot leave description blank.")]
         [StringLength(255, ErrorMessage = "Description cannot be more than 255 characters long.")]
-        public string Description { get; set; }
-
-        [Display(Name = "Size")]
-        [Required(ErrorMessage = "You cannot leave size blank.")]
-        [StringLength(10, ErrorMessage = "Size cannot be more than 10 characters long.")]
-        public string Size { get; set; }
+        public int Quantity { get; set; }
 
         [Required(ErrorMessage = "You must select a Bid.")]
         [Display(Name = "Bid")]

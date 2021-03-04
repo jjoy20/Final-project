@@ -280,18 +280,25 @@ namespace NBDcase.Data
                     context.SaveChanges();
                 }
 
-                //Inventory 
+                //Category
 
-                if (!context.Inventories.Any())
+                if (!context.Categories.Any())
                 {
-                    context.Inventories.AddRange(
-                        new Inventory
+                    context.Categories.AddRange(
+                        new Category
                         {
-                            Code = "Lacco",
-                            Description = "See NBD Case",
-                            Size = "10x20x20",
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        }
+                            CategoryName="Plant"
+                        },
+
+                         new Category
+                         {
+                             CategoryName = "Pottery"
+                         },
+
+                          new Category
+                          {
+                              CategoryName = "Materials"
+                          }
                         );
                     context.SaveChanges();
                 }
@@ -303,15 +310,34 @@ namespace NBDcase.Data
                     context.Materials.AddRange(
                         new Material
                         {
-                            Type = "Pottery",
+                            Code="TCP50",
                             Quantity = 20,
-                            Description = "GFN48",
-                            Size = "48in",
-                            UnitPrice = 457                            
+                            Description = "t/c pot",
+                            Size = "50 gal",
+                            UnitPrice = 54, 
+                            CategoryID=context.Categories.FirstOrDefault(c=>c.CategoryName=="Pottery").ID
                         }
                         );
                     context.SaveChanges();
                 }
+
+
+                //Inventory 
+
+                if (!context.Inventories.Any())
+                {
+                    context.Inventories.AddRange(
+                        new Inventory
+                        {
+                            Quantity=20,                           
+                            MaterialID=context.Materials.FirstOrDefault(m=>m.Description=="t/c pot").ID,                           
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        }
+                        );
+                    context.SaveChanges();
+                }
+
+                
 
 
             }

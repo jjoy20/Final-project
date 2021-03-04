@@ -15,7 +15,7 @@ namespace NBDcase.Data.NBDMigrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("NBD")
-                .HasAnnotation("ProductVersion", "3.1.11");
+                .HasAnnotation("ProductVersion", "3.1.12");
 
             modelBuilder.Entity("NBDcase.Models.Bid", b =>
                 {
@@ -23,10 +23,10 @@ namespace NBDcase.Data.NBDMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ApprovalClient")
+                    b.Property<bool>("ApprovalbyClient")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ApprovalNBD")
+                    b.Property<bool>("ApprovalbyNBD")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("BidAmount")
@@ -38,12 +38,28 @@ namespace NBDcase.Data.NBDMigrations
                     b.Property<int>("BidHours")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("DesignerID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("EstBeginDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("EstComplDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ProjectID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SalesID")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("DesignerID");
+
                     b.HasIndex("ProjectID");
+
+                    b.HasIndex("SalesID");
 
                     b.ToTable("Bids");
                 });
@@ -93,6 +109,69 @@ namespace NBDcase.Data.NBDMigrations
                     b.ToTable("Clients");
                 });
 
+            modelBuilder.Entity("NBDcase.Models.Designer", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.Property<long>("Phone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("eMail")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(255);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Designers");
+                });
+
+            modelBuilder.Entity("NBDcase.Models.Employee", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("LaborID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.Property<long>("Phone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("eMail")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(255);
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LaborID");
+
+                    b.ToTable("Employees");
+                });
+
             modelBuilder.Entity("NBDcase.Models.Inventory", b =>
                 {
                     b.Property<int>("ID")
@@ -102,23 +181,12 @@ namespace NBDcase.Data.NBDMigrations
                     b.Property<int>("BidID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
-
                     b.Property<int>("MaterialID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(10);
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(255);
 
                     b.HasKey("ID");
 
@@ -160,6 +228,11 @@ namespace NBDcase.Data.NBDMigrations
                     b.Property<int>("CategoryID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -172,11 +245,6 @@ namespace NBDcase.Data.NBDMigrations
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(10);
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(50);
 
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(19,2)");
@@ -220,6 +288,35 @@ namespace NBDcase.Data.NBDMigrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("NBDcase.Models.Sales", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.Property<long>("Phone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("eMail")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(255);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Sales");
+                });
+
             modelBuilder.Entity("NBDcase.Models.Staff", b =>
                 {
                     b.Property<int>("ID")
@@ -254,9 +351,30 @@ namespace NBDcase.Data.NBDMigrations
 
             modelBuilder.Entity("NBDcase.Models.Bid", b =>
                 {
+                    b.HasOne("NBDcase.Models.Designer", "Designer")
+                        .WithMany("Bids")
+                        .HasForeignKey("DesignerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("NBDcase.Models.Project", "Project")
                         .WithMany("Bids")
                         .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("NBDcase.Models.Sales", "Sales")
+                        .WithMany("Bids")
+                        .HasForeignKey("SalesID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NBDcase.Models.Employee", b =>
+                {
+                    b.HasOne("NBDcase.Models.Labor", "Labor")
+                        .WithMany("Employees")
+                        .HasForeignKey("LaborID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

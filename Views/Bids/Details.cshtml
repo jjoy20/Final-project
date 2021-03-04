@@ -17,6 +17,18 @@
             @Html.DisplayFor(model => model.BidDate)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstBeginDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstBeginDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstComplDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstComplDate)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BidAmount)
         </dt>
         <dd class = "col-sm-10">
@@ -29,22 +41,34 @@
             @Html.DisplayFor(model => model.BidHours)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ApprovalbyNBD)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApprovalbyNBD)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ApprovalbyClient)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApprovalbyClient)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Project)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Project.ProjectName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApprovalNBD)
+            @Html.DisplayNameFor(model => model.Designer)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApprovalNBD)
+            @Html.DisplayFor(model => model.Designer.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApprovalClient)
+            @Html.DisplayNameFor(model => model.Sales)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApprovalClient)
+            @Html.DisplayFor(model => model.Sales.FirstName)
         </dd>
     </dl>
 </div>

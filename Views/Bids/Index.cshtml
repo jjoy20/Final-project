@@ -16,19 +16,31 @@
                 @Html.DisplayNameFor(model => model.BidDate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.EstBeginDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstComplDate)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.BidAmount)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BidHours)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ApprovalbyNBD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovalbyClient)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Project)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApprovalNBD)
+                @Html.DisplayNameFor(model => model.Designer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApprovalClient)
+                @Html.DisplayNameFor(model => model.Sales)
             </th>
             <th></th>
         </tr>
@@ -40,19 +52,31 @@
                 @Html.DisplayFor(modelItem => item.BidDate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.EstBeginDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstComplDate)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.BidAmount)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BidHours)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ApprovalbyNBD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalbyClient)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Project.ProjectName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ApprovalNBD)
+                @Html.DisplayFor(modelItem => item.Designer.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ApprovalClient)
+                @Html.DisplayFor(modelItem => item.Sales.FirstName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

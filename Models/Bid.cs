@@ -15,12 +15,21 @@ namespace NBDcase.Models
             Inventories = new HashSet<Inventory>();
         }
 
-
         public int ID { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BidDate { get; set; }
+
+        [Required(ErrorMessage = "EstBeginDate is required.")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime EstBeginDate { get; set; }
+
+        [Required(ErrorMessage = "EstComplDate is required.")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime EstComplDate { get; set; }
 
         [Required(ErrorMessage = "BidAmount is required.")]
         [DataType(DataType.Currency)]
@@ -34,19 +43,29 @@ namespace NBDcase.Models
         public int BidHours { get; set; }
 
 
-        [Required(ErrorMessage = "You must select a ProjectID.")]
-        [Display(Name = "Project")]
-        public int ProjectID { get; set; }
-
-        public Project Project { get; set; }
-
         [Required(ErrorMessage = "ApprovalNBD is required.")]
         [Display(Name = "Approval")]
-        public bool ApprovalNBD { get; set; }
+        public bool ApprovalbyNBD { get; set; }
 
         [Required(ErrorMessage = "ApprovalClient is required.")]
         [Display(Name = "Approval")]
-        public bool ApprovalClient { get; set; }
+        public bool ApprovalbyClient { get; set; }
+
+
+        [Required(ErrorMessage = "You must select a ProjectID.")]
+        [Display(Name = "Project")]
+        public int ProjectID { get; set; }
+        public Project Project { get; set; }
+
+        [Required(ErrorMessage = "You must select a DesignerID.")]
+        [Display(Name = "Designer")]
+        public int DesignerID { get; set; }
+        public Designer Designer { get; set; }
+
+        [Required(ErrorMessage = "You must select a SalesID.")]
+        [Display(Name = "Sales")]
+        public int SalesID { get; set; }
+        public Sales Sales { get; set; }
 
 
         [Display(Name = "Staffs")]

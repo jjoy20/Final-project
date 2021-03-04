@@ -50,7 +50,7 @@ namespace NBDcase.Controllers
         public IActionResult Create()
         {
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID");
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description");
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Code,Description,Size,BidID,MaterialID")] Inventory inventory)
+        public async Task<IActionResult> Create([Bind("ID,Quantity,BidID,MaterialID")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace NBDcase.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -86,7 +86,7 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -95,7 +95,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Code,Description,Size,BidID,MaterialID")] Inventory inventory)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Quantity,BidID,MaterialID")] Inventory inventory)
         {
             if (id != inventory.ID)
             {
@@ -123,7 +123,7 @@ namespace NBDcase.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code", inventory.MaterialID);
             return View(inventory);
         }
 
