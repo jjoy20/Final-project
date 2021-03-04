@@ -15,6 +15,12 @@ namespace NBDcase.Data
 
         }
 
+        public DbSet<Category> Categories { get; set; }
+
+
+        public DbSet<Employee> Employees { get; set; }
+
+   
         public DbSet<Bid> Bids { get; set; }
 
         public DbSet<Client> Clients { get; set; }
@@ -29,7 +35,15 @@ namespace NBDcase.Data
 
         public DbSet<Staff> Staffs { get; set; }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Designer> Designers { get; set; }
+
+
+        public DbSet<Sales> Sales { get; set; }
+
+
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,6 +62,21 @@ namespace NBDcase.Data
                .WithOne(b => b.Project)
                .HasForeignKey(b => b.ProjectID)
                .OnDelete(DeleteBehavior.Restrict);
+
+            //Prevent Cascade Delete 
+            modelBuilder.Entity<Designer>()
+               .HasMany<Bid>(d => d.Bids)
+               .WithOne(b => b.Designer)
+               .HasForeignKey(b => b.DesignerID)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            //Prevent Cascade Delete 
+            modelBuilder.Entity<Sales>()
+              .HasMany<Bid>(s => s.Bids)
+              .WithOne(b => b.Sales)
+              .HasForeignKey(b => b.SalesID)
+              .OnDelete(DeleteBehavior.Restrict);
+
 
             //Prevent Cascade Delete 
             modelBuilder.Entity<Bid>()
@@ -71,10 +100,10 @@ namespace NBDcase.Data
                .OnDelete(DeleteBehavior.Restrict);
 
             //Prevent Cascade Delete 
-            modelBuilder.Entity<Material>()
-               .HasMany<Inventory>(b => b.Inventories)
-               .WithOne(i => i.Material)
-               .HasForeignKey(i => i.MaterialID)
+            modelBuilder.Entity<Labor>()
+               .HasMany<Employee>(l => l.Employees)
+               .WithOne(e => e.Labor)
+               .HasForeignKey(e => e.LaborID)
                .OnDelete(DeleteBehavior.Restrict);
 
             //Prevent Cascade Delete 
@@ -83,6 +112,13 @@ namespace NBDcase.Data
               .WithOne(p => p.Category)
               .HasForeignKey(p => p.CategoryID)
               .OnDelete(DeleteBehavior.Restrict);
+
+            //Prevent Cascade Delete 
+            modelBuilder.Entity<Material>()
+               .HasMany<Inventory>(b => b.Inventories)
+               .WithOne(i => i.Material)
+               .HasForeignKey(i => i.MaterialID)
+               .OnDelete(DeleteBehavior.Restrict);
 
         }
     }

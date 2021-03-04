@@ -10,23 +10,22 @@ using NBDcase.Models;
 
 namespace NBDcase.Controllers
 {
-    public class MaterialsController : Controller
+    public class DesignersController : Controller
     {
         private readonly NBDContext _context;
 
-        public MaterialsController(NBDContext context)
+        public DesignersController(NBDContext context)
         {
             _context = context;
         }
 
-        // GET: Materials
+        // GET: Designers
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.Materials.Include(m => m.Category);
-            return View(await nBDContext.ToListAsync());
+            return View(await _context.Designers.ToListAsync());
         }
 
-        // GET: Materials/Details/5
+        // GET: Designers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +33,39 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var material = await _context.Materials
-                .Include(m => m.Category)
+            var designer = await _context.Designers
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (material == null)
+            if (designer == null)
             {
                 return NotFound();
             }
 
-            return View(material);
+            return View(designer);
         }
 
-        // GET: Materials/Create
+        // GET: Designers/Create
         public IActionResult Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName");
             return View();
         }
 
-        // POST: Materials/Create
+        // POST: Designers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Code,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
+        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,eMail,Phone")] Designer designer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(material);
+                _context.Add(designer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
-            return View(material);
+            return View(designer);
         }
 
-        // GET: Materials/Edit/5
+        // GET: Designers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +73,22 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var material = await _context.Materials.FindAsync(id);
-            if (material == null)
+            var designer = await _context.Designers.FindAsync(id);
+            if (designer == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
-            return View(material);
+            return View(designer);
         }
 
-        // POST: Materials/Edit/5
+        // POST: Designers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Code,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName,LastName,eMail,Phone")] Designer designer)
         {
-            if (id != material.ID)
+            if (id != designer.ID)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace NBDcase.Controllers
             {
                 try
                 {
-                    _context.Update(material);
+                    _context.Update(designer);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MaterialExists(material.ID))
+                    if (!DesignerExists(designer.ID))
                     {
                         return NotFound();
                     }
@@ -118,11 +113,10 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "CategoryName", material.CategoryID);
-            return View(material);
+            return View(designer);
         }
 
-        // GET: Materials/Delete/5
+        // GET: Designers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +124,30 @@ namespace NBDcase.Controllers
                 return NotFound();
             }
 
-            var material = await _context.Materials
-                .Include(m => m.Category)
+            var designer = await _context.Designers
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (material == null)
+            if (designer == null)
             {
                 return NotFound();
             }
 
-            return View(material);
+            return View(designer);
         }
 
-        // POST: Materials/Delete/5
+        // POST: Designers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var material = await _context.Materials.FindAsync(id);
-            _context.Materials.Remove(material);
+            var designer = await _context.Designers.FindAsync(id);
+            _context.Designers.Remove(designer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MaterialExists(int id)
+        private bool DesignerExists(int id)
         {
-            return _context.Materials.Any(e => e.ID == id);
+            return _context.Designers.Any(e => e.ID == id);
         }
     }
 }

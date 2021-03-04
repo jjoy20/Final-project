@@ -15,10 +15,10 @@ namespace NBDcase.Models
         }
         public int ID { get; set; }
 
-        [Display(Name = "Type")]
-        [Required(ErrorMessage = "You cannot leave type blank.")]
-        [StringLength(50, ErrorMessage = "Type cannot be more than 50 characters long.")]
-        public string Type { get; set; }
+        [Display(Name = "Code")]
+        [Required(ErrorMessage = "You cannot leave code blank.")]
+        [StringLength(50, ErrorMessage = "Code cannot be more than 50 characters long.")]
+        public string Code { get; set; }
 
         [Display(Name = "Quantity")]
         [Required(ErrorMessage = "You cannot leave quantity blank.")]

@@ -12,6 +12,7 @@ namespace NBDcase.Models
         public Labor()
         {
             Staffs = new HashSet<Staff>();
+            Employees = new HashSet<Employee>();
         }
         public int ID { get; set; }
 
@@ -34,5 +35,7 @@ namespace NBDcase.Models
         public decimal LaborCost { get; set; }
 
         public ICollection<Staff> Staffs { get; set; }
+
+        public ICollection<Employee> Employees { get; set; }
     }
 }
