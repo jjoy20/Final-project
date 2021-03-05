@@ -22,7 +22,7 @@ namespace NBDcase.Controllers
         // GET: Projects
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.Projects.Include(p => p.Client);
+            var nBDContext = _context.Projects.Include(p => p.Client).Include(p=>p.Bids);
             return View(await nBDContext.ToListAsync());
         }
 
