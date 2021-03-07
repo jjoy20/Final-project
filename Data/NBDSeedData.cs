@@ -16,6 +16,7 @@ namespace NBDcase.Data
             using (var context = new NBDContext(
                 serviceProvider.GetRequiredService<DbContextOptions<NBDContext>>()))
             {
+                #region Clients
                 //client 
 
                 if (!context.Clients.Any())
@@ -24,7 +25,7 @@ namespace NBDcase.Data
                         new Client
                         {
                             ClientName = "London Sq. Mall",
-                            Address = "12638 Mall Drive, Scotts Valley,CA95060",
+                            Address = "12638 Mall Drive, Scotts Valley, CA95060",
                             Contact = "Amy Benson, Mgr.",
                             Phone = 4088345603
                         },
@@ -63,7 +64,9 @@ namespace NBDcase.Data
                         );
                     context.SaveChanges();
                 }
+                #endregion
 
+                #region Projects
                 //project
                 if (!context.Projects.Any())
                 {
@@ -160,7 +163,9 @@ namespace NBDcase.Data
                         );
                     context.SaveChanges();
                 }
+                #endregion
 
+                #region Bids
                 //bid
 
                 if (!context.Bids.Any())
@@ -169,176 +174,343 @@ namespace NBDcase.Data
                         new Bid
                         {
                             BidDate = DateTime.Parse("1996-05-06"),
+                            EstBeginDate = DateTime.Parse("1996-06-14"),
+                            EstComplDate = DateTime.Parse("1996-06-18"),
                             BidAmount = 7651,
                             BidHours = 10,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Entrance").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = true,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Entrance").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Dalton").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Josh").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("1997-11-01"),
+                            EstBeginDate = DateTime.Parse("1997-11-23"),
+                            EstComplDate = DateTime.Parse("1997-11-29"),
                             BidAmount = 2985,
                             BidHours = 5,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Food Court").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = true,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Food Court").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Jason").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Ethan").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2001-06-01"),
+                            EstBeginDate = DateTime.Parse("2001-06-07"),
+                            EstComplDate = DateTime.Parse("2001-06-14"),
                             BidAmount = 5386,
                             BidHours = 8,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall East").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = false,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall East").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Penelope").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Jessica").ID
                         },
 
                         new Bid
                         {
-                            BidDate = DateTime.Parse("2007-08-04"),
+                            BidDate = DateTime.Parse("2007-07-24"),
+                            EstBeginDate = DateTime.Parse("2007-08-11"),
+                            EstComplDate = DateTime.Parse("2007-08-19"),
                             BidAmount = 13495,
                             BidHours = 20,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall West").ID
+                            ApprovalbyNBD = false,
+                            ApprovalbyClient = false,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall West").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Carlos").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "David").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2006-04-07"),
+                            EstBeginDate = DateTime.Parse("2006-04-21"),
+                            EstComplDate = DateTime.Parse("2006-04-28"),
                             BidAmount = 10529,
                             BidHours = 15,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Theatre Entrance").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = false,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Theatre Entrance").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Lisa").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Abby").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2012-04-29"),
+                            EstBeginDate = DateTime.Parse("2012-05-09"),
+                            EstComplDate = DateTime.Parse("2012-05-17"),
                             BidAmount = 20168,
                             BidHours = 25,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Main Entrance").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = true,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Main Entrance").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Dalton").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Jessica").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2007-07-01"),
+                            EstBeginDate = DateTime.Parse("2007-07-07"),
+                            EstComplDate = DateTime.Parse("2007-07-18"),
                             BidAmount = 11536,
                             BidHours = 10,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Pool").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = true,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Pool").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Penelope").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Josh").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2015-03-18"),
+                            EstBeginDate = DateTime.Parse("2015-03-25"),
+                            EstComplDate = DateTime.Parse("2015-04-02"),
                             BidAmount = 6421,
                             BidHours = 7,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Entrance").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = false,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Entrance").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Jason").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Abby").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2011-02-20"),
+                            EstBeginDate = DateTime.Parse("2011-02-28"),
+                            EstComplDate = DateTime.Parse("2011-03-05"),
                             BidAmount = 6165,
                             BidHours = 5,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Food Court").ID
+                            ApprovalbyNBD = false,
+                            ApprovalbyClient = false,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Food Court").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Lisa").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Ethan").ID
                         },
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2018-09-04"),
+                            EstBeginDate = DateTime.Parse("2018-09-13"),
+                            EstComplDate = DateTime.Parse("2018-09-21"),
                             BidAmount = 9462,
                             BidHours = 12,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Entrance").ID
+                            ApprovalbyNBD = true,
+                            ApprovalbyClient = true,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Entrance").ID,
+                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Carlos").ID,
+                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "David").ID
                         }
                         );
                     context.SaveChanges();
                 }
+                #endregion
 
+                #region Staff
                 //staff 
 
-                if (!context.Staffs.Any())
-                {
-                    context.Staffs.AddRange(
-                        new Staff
-                        {
-                            PositionName = "Designer",
-                            Salary = 50000,
-                            Hours = 20,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        }
-                        );
-                    context.SaveChanges();
-                }
+                //if (!context.Staffs.Any())
+                //{
+                //    context.Staffs.AddRange(
+                //        new Staff
+                //        {
+                //            PositionName = "Designer",
+                //            Salary = 50000,
+                //            Hours = 20,
+                //            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
 
+                #region Labor
                 //labor
 
-                if (!context.Labors.Any())
-                {
-                    context.Labors.AddRange(
-                        new Labor
-                        {
-                            LaborType = "Production worker",
-                            LaborCost = 18,
-                            LaborPrice = 50                         
-                        }
-                        );
-                    context.SaveChanges();
-                }
+                //if (!context.Labors.Any())
+                //{
+                //    context.Labors.AddRange(
+                //        new Labor
+                //        {
+                //            LaborType = "Production worker",
+                //            LaborCost = 18,
+                //            LaborPrice = 50                         
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
 
+                #region Category
                 //Category
 
-                if (!context.Categories.Any())
-                {
-                    context.Categories.AddRange(
-                        new Category
-                        {
-                            CategoryName="Plant"
-                        },
+                //if (!context.Categories.Any())
+                //{
+                //    context.Categories.AddRange(
+                //        new Category
+                //        {
+                //            CategoryName="Plant"
+                //        },
 
-                         new Category
-                         {
-                             CategoryName = "Pottery"
-                         },
+                //         new Category
+                //         {
+                //             CategoryName = "Pottery"
+                //         },
 
-                          new Category
-                          {
-                              CategoryName = "Materials"
-                          }
-                        );
-                    context.SaveChanges();
-                }
+                //          new Category
+                //          {
+                //              CategoryName = "Materials"
+                //          }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
 
+                #region Material
                 //Material 
 
-                if (!context.Materials.Any())
-                {
-                    context.Materials.AddRange(
-                        new Material
-                        {
-                            Code="TCP50",
-                            Quantity = 20,
-                            Description = "t/c pot",
-                            Size = "50 gal",
-                            UnitPrice = 54, 
-                            CategoryID=context.Categories.FirstOrDefault(c=>c.CategoryName=="Pottery").ID
-                        }
-                        );
-                    context.SaveChanges();
-                }
+                //if (!context.Materials.Any())
+                //{
+                //    context.Materials.AddRange(
+                //        new Material
+                //        {
+                //            Code="TCP50",
+                //            Quantity = 20,
+                //            Description = "t/c pot",
+                //            Size = "50 gal",
+                //            UnitPrice = 54, 
+                //            CategoryID=context.Categories.FirstOrDefault(c=>c.CategoryName=="Pottery").ID
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
 
-
+                #region Inventory
                 //Inventory 
 
-                if (!context.Inventories.Any())
+                //if (!context.Inventories.Any())
+                //{
+                //    context.Inventories.AddRange(
+                //        new Inventory
+                //        {
+                //            Quantity=20,                           
+                //            MaterialID=context.Materials.FirstOrDefault(m=>m.Description=="t/c pot").ID,                           
+                //            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
+
+                #region Sales
+                //Sales
+
+                if (!context.Sales.Any())
                 {
-                    context.Inventories.AddRange(
-                        new Inventory
+                    context.Sales.AddRange(
+                        new Sales
                         {
-                            Quantity=20,                           
-                            MaterialID=context.Materials.FirstOrDefault(m=>m.Description=="t/c pot").ID,                           
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                            FirstName = "Josh",
+                            LastName = "Picard",
+                            eMail = "jpicard@gmail.com",
+                            Phone = 1629465579
+                        },
+
+                        new Sales
+                        {
+                            FirstName = "Abby",
+                            LastName = "Davidson",
+                            eMail = "bbyd@gmail.com",
+                            Phone = 2465971562
+                        },
+
+                        new Sales
+                        {
+                            FirstName = "Ethan",
+                            LastName = "Smith",
+                            eMail = "ethan.smith@gmail.com",
+                            Phone = 5462870264
+                        },
+
+                        new Sales
+                        {
+                            FirstName = "David",
+                            LastName = "Jones",
+                            eMail = "djones12@gmail.com",
+                            Phone = 2113408579
+                        },
+
+                        new Sales
+                        {
+                            FirstName = "Jessica",
+                            LastName = "Williams",
+                            eMail = "jessica.williams@gmail.com",
+                            Phone = 1603189463
                         }
                         );
                     context.SaveChanges();
                 }
+                #endregion
 
-                
+                #region Designers
+                //Designers
 
+                if (!context.Designers.Any())
+                {
+                    context.Designers.AddRange(
+                        new Designer
+                        {
+                            FirstName = "Dalton",
+                            LastName = "Davis",
+                            eMail = "daltond@gmail.com",
+                            Phone = 5408956735
+                        },
+
+                        new Designer
+                        {
+                            FirstName = "Jason",
+                            LastName = "Miller",
+                            eMail = "j.miller@gmail.com",
+                            Phone = 5468217305
+                        },
+
+                        new Designer
+                        {
+                            FirstName = "Lisa",
+                            LastName = "Thomas",
+                            eMail = "l.thomas@gmail.com",
+                            Phone = 2475971562
+                        },
+
+                        new Designer
+                        {
+                            FirstName = "Carlos",
+                            LastName = "Garcia",
+                            eMail = "carlosg1234@gmail.com",
+                            Phone = 6547359046
+                        },
+
+                        new Designer
+                        {
+                            FirstName = "Penelope",
+                            LastName = "Wilson",
+                            eMail = "pwils97@gmail.com",
+                            Phone = 5469173586
+                        }
+                        );
+                    context.SaveChanges();
+                }
+                #endregion
 
             }
         }

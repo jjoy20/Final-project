@@ -17,38 +17,42 @@ namespace NBDcase.Models
 
         public int ID { get; set; }
 
+        [Display(Name = "Creation Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BidDate { get; set; }
 
+        [Display(Name = "Estimated Start Date")]
         [Required(ErrorMessage = "EstBeginDate is required.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EstBeginDate { get; set; }
 
+        [Display(Name = "Estimated Completion Date")]
         [Required(ErrorMessage = "EstComplDate is required.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EstComplDate { get; set; }
 
+        [Display(Name = "Cost")]
         [Required(ErrorMessage = "BidAmount is required.")]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(19,2)")]
         [Range(0, 99999999999999999.99, ErrorMessage = "Invalid Bid Amount")]
         public decimal BidAmount { get; set; }
 
-
+        [Display(Name = "Time (hours)")]
         [Required(ErrorMessage = "BidHours is required.")]
         [Range(0, 999, ErrorMessage = "Invalid Bid Hours!")]
         public int BidHours { get; set; }
 
 
         [Required(ErrorMessage = "ApprovalNBD is required.")]
-        [Display(Name = "Approval")]
+        [Display(Name = "Internal Approval")]
         public bool ApprovalbyNBD { get; set; }
 
         [Required(ErrorMessage = "ApprovalClient is required.")]
-        [Display(Name = "Approval")]
+        [Display(Name = "Approval By Client")]
         public bool ApprovalbyClient { get; set; }
 
 

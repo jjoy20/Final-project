@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NBDcase.Data;
 using NBDcase.Models;
+using NBDcase.Utilities;
 
 namespace NBDcase.Controllers
 {
@@ -20,9 +21,12 @@ namespace NBDcase.Controllers
         }
 
         // GET: Sales
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            return View(await _context.Sales.ToListAsync());
+            int pageSize = 3;//Change as required
+            var PageData = await PaginatedList<Sales>.CreateAsync(_context.Sales.AsNoTracking(), page ?? 1, pageSize);
+
+            return View(PageData);
         }
 
         // GET: Sales/Details/5

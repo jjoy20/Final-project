@@ -20,10 +20,12 @@ namespace NBDcase.Models
         [StringLength(50, ErrorMessage = "Project name cannot be more than 50 characters long.")]
         public string ProjectName { get; set; }
 
+        [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BeginDate { get; set; }
 
+        [Display(Name = "Completion Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CompleteDate { get; set; }
