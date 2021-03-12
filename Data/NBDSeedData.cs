@@ -165,6 +165,99 @@ namespace NBDcase.Data
                 }
                 #endregion
 
+                #region Employees
+                //employee
+                
+                if (!context.Employees.Any())
+                {
+                    context.Employees.AddRange(
+                        new Employee
+                        {
+                            FirstName = "Josh",
+                            LastName = "Picard",
+                            eMail = "jpicard@gmail.com",
+                            Phone = 1629465579
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "Abby",
+                            LastName = "Davidson",
+                            eMail = "bbyd@gmail.com",
+                            Phone = 2465971562
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "Ethan",
+                            LastName = "Smith",
+                            eMail = "ethan.smith@gmail.com",
+                            Phone = 5462870264
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "David",
+                            LastName = "Jones",
+                            eMail = "djones12@gmail.com",
+                            Phone = 2113408579
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "Jessica",
+                            LastName = "Williams",
+                            eMail = "jessica.williams@gmail.com",
+                            Phone = 1603189463
+                        },
+
+                         new Employee
+                         {
+                             FirstName = "Dalton",
+                             LastName = "Davis",
+                             eMail = "daltond@gmail.com",
+                             Phone = 5408956735
+                         },
+
+                        new Employee
+                        {
+                            FirstName = "Jason",
+                            LastName = "Miller",
+                            eMail = "j.miller@gmail.com",
+                            Phone = 5468217305
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "Lisa",
+                            LastName = "Thomas",
+                            eMail = "l.thomas@gmail.com",
+                            Phone = 2475971562
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "Carlos",
+                            LastName = "Garcia",
+                            eMail = "carlosg1234@gmail.com",
+                            Phone = 6547359046
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "Penelope",
+                            LastName = "Wilson",
+                            eMail = "pwils97@gmail.com",
+                            Phone = 5469173586
+                        }
+
+                        );
+                    context.SaveChanges();
+                }
+
+                #endregion
+
+
                 #region Bids
                 //bid
 
@@ -181,8 +274,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Entrance").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Dalton").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Josh").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Dalton").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Josh").ID
                         },
 
                         new Bid
@@ -195,8 +288,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Food Court").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Jason").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Ethan").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Jason").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Ethan").ID
                         },
 
                         new Bid
@@ -209,8 +302,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = false,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall East").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Penelope").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Jessica").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Penelope").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Jessica").ID
                         },
 
                         new Bid
@@ -223,8 +316,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = false,
                             ApprovalbyClient = false,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall West").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Carlos").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "David").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Carlos").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "David").ID
                         },
 
                         new Bid
@@ -237,8 +330,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = false,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Theatre Entrance").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Lisa").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Abby").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Lisa").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Abby").ID
                         },
 
                         new Bid
@@ -251,8 +344,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Main Entrance").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Dalton").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Jessica").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Dalton").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Jessica").ID
                         },
 
                         new Bid
@@ -265,8 +358,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Pool").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Penelope").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Josh").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Penelope").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Josh").ID
                         },
 
                         new Bid
@@ -279,8 +372,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = false,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Entrance").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Jason").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Abby").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Jason").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Abby").ID
                         },
 
                         new Bid
@@ -293,8 +386,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = false,
                             ApprovalbyClient = false,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Food Court").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Lisa").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "Ethan").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Lisa").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Ethan").ID
                         },
 
                         new Bid
@@ -307,8 +400,8 @@ namespace NBDcase.Data
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Entrance").ID,
-                            DesignerID = context.Designers.FirstOrDefault(d => d.FirstName == "Carlos").ID,
-                            SalesID = context.Sales.FirstOrDefault(s => s.FirstName == "David").ID
+                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Carlos").ID,
+                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "David").ID
                         }
                         );
                     context.SaveChanges();
@@ -412,105 +505,9 @@ namespace NBDcase.Data
                 //}
                 #endregion
 
-                #region Sales
-                //Sales
+              
 
-                if (!context.Sales.Any())
-                {
-                    context.Sales.AddRange(
-                        new Sales
-                        {
-                            FirstName = "Josh",
-                            LastName = "Picard",
-                            eMail = "jpicard@gmail.com",
-                            Phone = 1629465579
-                        },
-
-                        new Sales
-                        {
-                            FirstName = "Abby",
-                            LastName = "Davidson",
-                            eMail = "bbyd@gmail.com",
-                            Phone = 2465971562
-                        },
-
-                        new Sales
-                        {
-                            FirstName = "Ethan",
-                            LastName = "Smith",
-                            eMail = "ethan.smith@gmail.com",
-                            Phone = 5462870264
-                        },
-
-                        new Sales
-                        {
-                            FirstName = "David",
-                            LastName = "Jones",
-                            eMail = "djones12@gmail.com",
-                            Phone = 2113408579
-                        },
-
-                        new Sales
-                        {
-                            FirstName = "Jessica",
-                            LastName = "Williams",
-                            eMail = "jessica.williams@gmail.com",
-                            Phone = 1603189463
-                        }
-                        );
-                    context.SaveChanges();
-                }
-                #endregion
-
-                #region Designers
-                //Designers
-
-                if (!context.Designers.Any())
-                {
-                    context.Designers.AddRange(
-                        new Designer
-                        {
-                            FirstName = "Dalton",
-                            LastName = "Davis",
-                            eMail = "daltond@gmail.com",
-                            Phone = 5408956735
-                        },
-
-                        new Designer
-                        {
-                            FirstName = "Jason",
-                            LastName = "Miller",
-                            eMail = "j.miller@gmail.com",
-                            Phone = 5468217305
-                        },
-
-                        new Designer
-                        {
-                            FirstName = "Lisa",
-                            LastName = "Thomas",
-                            eMail = "l.thomas@gmail.com",
-                            Phone = 2475971562
-                        },
-
-                        new Designer
-                        {
-                            FirstName = "Carlos",
-                            LastName = "Garcia",
-                            eMail = "carlosg1234@gmail.com",
-                            Phone = 6547359046
-                        },
-
-                        new Designer
-                        {
-                            FirstName = "Penelope",
-                            LastName = "Wilson",
-                            eMail = "pwils97@gmail.com",
-                            Phone = 5469173586
-                        }
-                        );
-                    context.SaveChanges();
-                }
-                #endregion
+                
 
             }
         }

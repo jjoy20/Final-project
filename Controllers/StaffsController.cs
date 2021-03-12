@@ -37,7 +37,7 @@ namespace NBDcase.Controllers
             var staff = await _context.Staffs
                 .Include(s => s.Bid)
                 .Include(s => s.Labor)
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.BidID == id);
             if (staff == null)
             {
                 return NotFound();
@@ -97,7 +97,7 @@ namespace NBDcase.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,PositionName,Salary,Hours,BidID,LaborID")] Staff staff)
         {
-            if (id != staff.ID)
+            if (id != staff.BidID)
             {
                 return NotFound();
             }
@@ -111,7 +111,7 @@ namespace NBDcase.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StaffExists(staff.ID))
+                    if (!StaffExists(staff.BidID))
                     {
                         return NotFound();
                     }
@@ -138,7 +138,7 @@ namespace NBDcase.Controllers
             var staff = await _context.Staffs
                 .Include(s => s.Bid)
                 .Include(s => s.Labor)
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.BidID == id);
             if (staff == null)
             {
                 return NotFound();
@@ -160,7 +160,7 @@ namespace NBDcase.Controllers
 
         private bool StaffExists(int id)
         {
-            return _context.Staffs.Any(e => e.ID == id);
+            return _context.Staffs.Any(e => e.BidID == id);
         }
     }
 }

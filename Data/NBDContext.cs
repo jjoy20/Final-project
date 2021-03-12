@@ -35,19 +35,16 @@ namespace NBDcase.Data
 
         public DbSet<Staff> Staffs { get; set; }
 
-        public DbSet<Designer> Designers { get; set; }
-
-
-        public DbSet<Sales> Sales { get; set; }
-
-
-
-
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("NBD");
+
+            //Many to Many Intersection
+            modelBuilder.Entity<Staff>()
+                .HasKey(t => new { t.BidID, t.LaborID });
+
 
             //Prevent Cascade Delete 
             modelBuilder.Entity<Client>()
@@ -62,21 +59,7 @@ namespace NBDcase.Data
                .WithOne(b => b.Project)
                .HasForeignKey(b => b.ProjectID)
                .OnDelete(DeleteBehavior.Restrict);
-
-            //Prevent Cascade Delete 
-            modelBuilder.Entity<Designer>()
-               .HasMany<Bid>(d => d.Bids)
-               .WithOne(b => b.Designer)
-               .HasForeignKey(b => b.DesignerID)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            //Prevent Cascade Delete 
-            modelBuilder.Entity<Sales>()
-              .HasMany<Bid>(s => s.Bids)
-              .WithOne(b => b.Sales)
-              .HasForeignKey(b => b.SalesID)
-              .OnDelete(DeleteBehavior.Restrict);
-
+           
 
             //Prevent Cascade Delete 
             modelBuilder.Entity<Bid>()
