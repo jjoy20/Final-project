@@ -61,15 +61,15 @@ namespace NBDcase.Models
         public int ProjectID { get; set; }
         public Project Project { get; set; }
 
-        [Required(ErrorMessage = "You must select a DesignerID.")]
+        [Required(ErrorMessage = "You must select a Designer EmployeeID.")]
         [Display(Name = "Designer")]
-        public int DesignerID { get; set; }
-        public Designer Designer { get; set; }
+        public int EmployeeID { get; set; }
+        public Employee Employee { get; set; }
 
-        [Required(ErrorMessage = "You must select a SalesID.")]
+        [Required(ErrorMessage = "You must select a Sales EmployeeID.")]
         [Display(Name = "Sales")]
-        public int SalesID { get; set; }
-        public Sales Sales { get; set; }
+        public int Employee2ID { get; set; }
+        public Employee Employee2 { get; set; }
 
 
         [Display(Name = "Staffs")]

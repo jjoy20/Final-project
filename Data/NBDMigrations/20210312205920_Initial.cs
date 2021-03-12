@@ -42,23 +42,6 @@ namespace NBDcase.Data.NBDMigrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Designers",
-                schema: "NBD",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
-                    eMail = table.Column<string>(maxLength: 255, nullable: false),
-                    Phone = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Designers", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Labors",
                 schema: "NBD",
                 columns: table => new
@@ -72,23 +55,6 @@ namespace NBDcase.Data.NBDMigrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Labors", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sales",
-                schema: "NBD",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
-                    eMail = table.Column<string>(maxLength: 255, nullable: false),
-                    Phone = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,31 +148,31 @@ namespace NBDcase.Data.NBDMigrations
                     ApprovalbyNBD = table.Column<bool>(nullable: false),
                     ApprovalbyClient = table.Column<bool>(nullable: false),
                     ProjectID = table.Column<int>(nullable: false),
-                    DesignerID = table.Column<int>(nullable: false),
-                    SalesID = table.Column<int>(nullable: false)
+                    EmployeeID = table.Column<int>(nullable: false),
+                    Employee2ID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bids", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Bids_Designers_DesignerID",
-                        column: x => x.DesignerID,
+                        name: "FK_Bids_Employees_Employee2ID",
+                        column: x => x.Employee2ID,
                         principalSchema: "NBD",
-                        principalTable: "Designers",
+                        principalTable: "Employees",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Bids_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalSchema: "NBD",
+                        principalTable: "Employees",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Bids_Projects_ProjectID",
                         column: x => x.ProjectID,
                         principalSchema: "NBD",
                         principalTable: "Projects",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Bids_Sales_SalesID",
-                        column: x => x.SalesID,
-                        principalSchema: "NBD",
-                        principalTable: "Sales",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -246,17 +212,16 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    BidID = table.Column<int>(nullable: false),
+                    LaborID = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     PositionName = table.Column<string>(maxLength: 50, nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(19,2)", nullable: false),
-                    Hours = table.Column<int>(nullable: false),
-                    BidID = table.Column<int>(nullable: false),
-                    LaborID = table.Column<int>(nullable: false)
+                    Hours = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Staffs", x => x.ID);
+                    table.PrimaryKey("PK_Staffs", x => new { x.BidID, x.LaborID });
                     table.ForeignKey(
                         name: "FK_Staffs_Bids_BidID",
                         column: x => x.BidID,
@@ -274,22 +239,22 @@ namespace NBDcase.Data.NBDMigrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bids_DesignerID",
+                name: "IX_Bids_Employee2ID",
                 schema: "NBD",
                 table: "Bids",
-                column: "DesignerID");
+                column: "Employee2ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bids_EmployeeID",
+                schema: "NBD",
+                table: "Bids",
+                column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bids_ProjectID",
                 schema: "NBD",
                 table: "Bids",
                 column: "ProjectID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Bids_SalesID",
-                schema: "NBD",
-                table: "Bids",
-                column: "SalesID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_LaborID",
@@ -322,12 +287,6 @@ namespace NBDcase.Data.NBDMigrations
                 column: "ClientID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Staffs_BidID",
-                schema: "NBD",
-                table: "Staffs",
-                column: "BidID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Staffs_LaborID",
                 schema: "NBD",
                 table: "Staffs",
@@ -336,10 +295,6 @@ namespace NBDcase.Data.NBDMigrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Employees",
-                schema: "NBD");
-
             migrationBuilder.DropTable(
                 name: "Inventories",
                 schema: "NBD");
@@ -357,15 +312,11 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD");
 
             migrationBuilder.DropTable(
-                name: "Labors",
-                schema: "NBD");
-
-            migrationBuilder.DropTable(
                 name: "Categories",
                 schema: "NBD");
 
             migrationBuilder.DropTable(
-                name: "Designers",
+                name: "Employees",
                 schema: "NBD");
 
             migrationBuilder.DropTable(
@@ -373,7 +324,7 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD");
 
             migrationBuilder.DropTable(
-                name: "Sales",
+                name: "Labors",
                 schema: "NBD");
 
             migrationBuilder.DropTable(
