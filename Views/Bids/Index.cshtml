@@ -37,10 +37,10 @@
                 @Html.DisplayNameFor(model => model.Project)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee)
+                @Html.DisplayNameFor(model => model.Designer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee2)
+                @Html.DisplayNameFor(model => model.Sales)
             </th>
             <th></th>
         </tr>
@@ -73,10 +73,10 @@
                 @Html.DisplayFor(modelItem => item.Project.ProjectName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                @Html.DisplayFor(modelItem => item.Designer.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee2.FirstName)
+                @Html.DisplayFor(modelItem => item.Sales.FirstName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

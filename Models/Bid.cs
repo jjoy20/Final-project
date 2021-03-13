@@ -63,13 +63,13 @@ namespace NBDcase.Models
 
         [Required(ErrorMessage = "You must select a Designer EmployeeID.")]
         [Display(Name = "Designer")]
-        public int EmployeeID { get; set; }
-        public Employee Employee { get; set; }
+        public int DesignerID { get; set; }
+        public Employee Designer { get; set; }
 
         [Required(ErrorMessage = "You must select a Sales EmployeeID.")]
         [Display(Name = "Sales")]
-        public int Employee2ID { get; set; }
-        public Employee Employee2 { get; set; }
+        public int SalesID { get; set; }
+        public Employee Sales { get; set; }
 
 
         [Display(Name = "Staffs")]

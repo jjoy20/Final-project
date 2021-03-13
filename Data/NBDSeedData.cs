@@ -165,9 +165,49 @@ namespace NBDcase.Data
                 }
                 #endregion
 
+                #region labors
+                //labor
+                if (!context.Labors.Any())
+                {
+                    context.Labors.AddRange(
+                        new Labor
+                        {
+                            LaborType="Production worker",
+                            LaborCost=18m,
+                            LaborPrice=50m
+                        },
+
+                        new Labor
+                        {
+                            LaborType = "Heavy equipment operator",
+                            LaborCost = 25m,
+                            LaborPrice = 65m
+
+                        },
+                         new Labor
+                         {
+                             LaborType = "Designer Consultant",
+                             LaborCost = 25m,
+                             LaborPrice = 65m
+
+                         },
+                          new Labor
+                          {
+                              LaborType = "Sales",
+                              LaborCost = 25m,
+                              LaborPrice = 65m
+
+                          }
+                        );
+                    context.SaveChanges();
+                }
+                #endregion
+
+
+
                 #region Employees
                 //employee
-                
+
                 if (!context.Employees.Any())
                 {
                     context.Employees.AddRange(
@@ -176,7 +216,8 @@ namespace NBDcase.Data
                             FirstName = "Josh",
                             LastName = "Picard",
                             eMail = "jpicard@gmail.com",
-                            Phone = 1629465579
+                            Phone = 1629465579,
+                            LaborID= context.Labors.FirstOrDefault(l => l.LaborType == "Sales").ID
                         },
 
                         new Employee
@@ -184,7 +225,9 @@ namespace NBDcase.Data
                             FirstName = "Abby",
                             LastName = "Davidson",
                             eMail = "bbyd@gmail.com",
-                            Phone = 2465971562
+                            Phone = 2465971562,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Sales").ID
+
                         },
 
                         new Employee
@@ -192,7 +235,8 @@ namespace NBDcase.Data
                             FirstName = "Ethan",
                             LastName = "Smith",
                             eMail = "ethan.smith@gmail.com",
-                            Phone = 5462870264
+                            Phone = 5462870264,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Sales").ID
                         },
 
                         new Employee
@@ -200,7 +244,8 @@ namespace NBDcase.Data
                             FirstName = "David",
                             LastName = "Jones",
                             eMail = "djones12@gmail.com",
-                            Phone = 2113408579
+                            Phone = 2113408579,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Sales").ID
                         },
 
                         new Employee
@@ -208,7 +253,8 @@ namespace NBDcase.Data
                             FirstName = "Jessica",
                             LastName = "Williams",
                             eMail = "jessica.williams@gmail.com",
-                            Phone = 1603189463
+                            Phone = 1603189463,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Sales").ID
                         },
 
                          new Employee
@@ -216,7 +262,8 @@ namespace NBDcase.Data
                              FirstName = "Dalton",
                              LastName = "Davis",
                              eMail = "daltond@gmail.com",
-                             Phone = 5408956735
+                             Phone = 5408956735,
+                             LaborID=context.Labors.FirstOrDefault(l=>l.LaborType== "Designer Consultant").ID
                          },
 
                         new Employee
@@ -224,7 +271,8 @@ namespace NBDcase.Data
                             FirstName = "Jason",
                             LastName = "Miller",
                             eMail = "j.miller@gmail.com",
-                            Phone = 5468217305
+                            Phone = 5468217305,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID
                         },
 
                         new Employee
@@ -232,7 +280,8 @@ namespace NBDcase.Data
                             FirstName = "Lisa",
                             LastName = "Thomas",
                             eMail = "l.thomas@gmail.com",
-                            Phone = 2475971562
+                            Phone = 2475971562,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID
                         },
 
                         new Employee
@@ -240,7 +289,8 @@ namespace NBDcase.Data
                             FirstName = "Carlos",
                             LastName = "Garcia",
                             eMail = "carlosg1234@gmail.com",
-                            Phone = 6547359046
+                            Phone = 6547359046,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID
                         },
 
                         new Employee
@@ -248,7 +298,8 @@ namespace NBDcase.Data
                             FirstName = "Penelope",
                             LastName = "Wilson",
                             eMail = "pwils97@gmail.com",
-                            Phone = 5469173586
+                            Phone = 5469173586,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID
                         }
 
                         );
@@ -269,13 +320,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("1996-05-06"),
                             EstBeginDate = DateTime.Parse("1996-06-14"),
                             EstComplDate = DateTime.Parse("1996-06-18"),
-                            BidAmount = 7651,
+                            BidAmount = 7651m,
                             BidHours = 10,
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Entrance").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Dalton").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Josh").ID
+                            DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Dalton").ID,
+                            SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Josh").ID
                         },
 
                         new Bid
@@ -283,27 +334,27 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("1997-11-01"),
                             EstBeginDate = DateTime.Parse("1997-11-23"),
                             EstComplDate = DateTime.Parse("1997-11-29"),
-                            BidAmount = 2985,
+                            BidAmount = 2985m,
                             BidHours = 5,
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Food Court").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Jason").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Ethan").ID
-                        },
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "LS Mall Food Court").ID,                          
+                            DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Jason").ID,
+                            SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Ethan").ID
+                        }, 
 
                         new Bid
                         {
                             BidDate = DateTime.Parse("2001-06-01"),
                             EstBeginDate = DateTime.Parse("2001-06-07"),
                             EstComplDate = DateTime.Parse("2001-06-14"),
-                            BidAmount = 5386,
+                            BidAmount = 5386m,
                             BidHours = 8,
                             ApprovalbyNBD = true,
-                            ApprovalbyClient = false,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall East").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Penelope").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Jessica").ID
+                            ApprovalbyClient = true,
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall East").ID,                   
+                                DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Penelope").ID,
+                                SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Jessica").ID
                         },
 
                         new Bid
@@ -311,13 +362,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("2007-07-24"),
                             EstBeginDate = DateTime.Parse("2007-08-11"),
                             EstComplDate = DateTime.Parse("2007-08-19"),
-                            BidAmount = 13495,
+                            BidAmount = 13495m,
                             BidHours = 20,
                             ApprovalbyNBD = false,
                             ApprovalbyClient = false,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall West").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Carlos").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "David").ID
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Fairview Mall West").ID,                     
+                            DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Carlos").ID,
+                            SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "David").ID
                         },
 
                         new Bid
@@ -325,13 +376,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("2006-04-07"),
                             EstBeginDate = DateTime.Parse("2006-04-21"),
                             EstComplDate = DateTime.Parse("2006-04-28"),
-                            BidAmount = 10529,
+                            BidAmount = 10529m,
                             BidHours = 15,
                             ApprovalbyNBD = true,
                             ApprovalbyClient = false,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Theatre Entrance").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Lisa").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Abby").ID
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Theatre Entrance").ID,                        
+                            DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Lisa").ID,
+                            SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Abby").ID
                         },
 
                         new Bid
@@ -339,13 +390,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("2012-04-29"),
                             EstBeginDate = DateTime.Parse("2012-05-09"),
                             EstComplDate = DateTime.Parse("2012-05-17"),
-                            BidAmount = 20168,
+                            BidAmount = 20168m,
                             BidHours = 25,
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Main Entrance").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Dalton").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Jessica").ID
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Pen Centre Main Entrance").ID,                
+                           DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Dalton").ID,
+                           SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Jessica").ID
                         },
 
                         new Bid
@@ -353,13 +404,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("2007-07-01"),
                             EstBeginDate = DateTime.Parse("2007-07-07"),
                             EstComplDate = DateTime.Parse("2007-07-18"),
-                            BidAmount = 11536,
+                            BidAmount = 11536m,
                             BidHours = 10,
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Pool").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Penelope").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Josh").ID
+                            DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Penelope").ID,
+                            SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Josh").ID
                         },
 
                         new Bid
@@ -367,13 +418,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("2015-03-18"),
                             EstBeginDate = DateTime.Parse("2015-03-25"),
                             EstComplDate = DateTime.Parse("2015-04-02"),
-                            BidAmount = 6421,
+                            BidAmount = 6421m,
                             BidHours = 7,
                             ApprovalbyNBD = true,
                             ApprovalbyClient = false,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "BW Hotel Entrance").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Jason").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Abby").ID
+                           DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Jason").ID,
+                           SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Abby").ID
                         },
 
                         new Bid
@@ -381,13 +432,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("2011-02-20"),
                             EstBeginDate = DateTime.Parse("2011-02-28"),
                             EstComplDate = DateTime.Parse("2011-03-05"),
-                            BidAmount = 6165,
+                            BidAmount = 6165m,
                             BidHours = 5,
                             ApprovalbyNBD = false,
                             ApprovalbyClient = false,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Food Court").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Lisa").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "Ethan").ID
+                            DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Lisa").ID,
+                            SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "Ethan").ID
                         },
 
                         new Bid
@@ -395,13 +446,13 @@ namespace NBDcase.Data
                             BidDate = DateTime.Parse("2018-09-04"),
                             EstBeginDate = DateTime.Parse("2018-09-13"),
                             EstComplDate = DateTime.Parse("2018-09-21"),
-                            BidAmount = 9462,
+                            BidAmount = 9462m,
                             BidHours = 12,
                             ApprovalbyNBD = true,
                             ApprovalbyClient = true,
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectName == "Mapleview Mall Entrance").ID,
-                            EmployeeID = context.Employees.FirstOrDefault(d => d.FirstName == "Carlos").ID,
-                            Employee2ID = context.Employees.FirstOrDefault(s => s.FirstName == "David").ID
+                            DesignerID = context.Employees.FirstOrDefault(d => d.FirstName == "Carlos").ID,
+                            SalesID = context.Employees.FirstOrDefault(s => s.FirstName == "David").ID
                         }
                         );
                     context.SaveChanges();
@@ -503,11 +554,7 @@ namespace NBDcase.Data
                 //        );
                 //    context.SaveChanges();
                 //}
-                #endregion
-
-              
-
-                
+                #endregion        
 
             }
         }
