@@ -15,7 +15,7 @@ namespace NBDcase.Data.NBDMigrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("NBD")
-                .HasAnnotation("ProductVersion", "3.1.12");
+                .HasAnnotation("ProductVersion", "3.1.13");
 
             modelBuilder.Entity("NBDcase.Models.Bid", b =>
                 {
@@ -38,10 +38,7 @@ namespace NBDcase.Data.NBDMigrations
                     b.Property<int>("BidHours")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Employee2ID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("EmployeeID")
+                    b.Property<int>("DesignerID")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("EstBeginDate")
@@ -53,13 +50,16 @@ namespace NBDcase.Data.NBDMigrations
                     b.Property<int>("ProjectID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("SalesID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ID");
 
-                    b.HasIndex("Employee2ID");
-
-                    b.HasIndex("EmployeeID");
+                    b.HasIndex("DesignerID");
 
                     b.HasIndex("ProjectID");
+
+                    b.HasIndex("SalesID");
 
                     b.ToTable("Bids");
                 });
@@ -290,15 +290,9 @@ namespace NBDcase.Data.NBDMigrations
 
             modelBuilder.Entity("NBDcase.Models.Bid", b =>
                 {
-                    b.HasOne("NBDcase.Models.Employee", "Employee2")
+                    b.HasOne("NBDcase.Models.Employee", "Designer")
                         .WithMany()
-                        .HasForeignKey("Employee2ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NBDcase.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeID")
+                        .HasForeignKey("DesignerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -306,6 +300,12 @@ namespace NBDcase.Data.NBDMigrations
                         .WithMany("Bids")
                         .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("NBDcase.Models.Employee", "Sales")
+                        .WithMany()
+                        .HasForeignKey("SalesID")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

@@ -148,22 +148,15 @@ namespace NBDcase.Data.NBDMigrations
                     ApprovalbyNBD = table.Column<bool>(nullable: false),
                     ApprovalbyClient = table.Column<bool>(nullable: false),
                     ProjectID = table.Column<int>(nullable: false),
-                    EmployeeID = table.Column<int>(nullable: false),
-                    Employee2ID = table.Column<int>(nullable: false)
+                    DesignerID = table.Column<int>(nullable: false),
+                    SalesID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bids", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Bids_Employees_Employee2ID",
-                        column: x => x.Employee2ID,
-                        principalSchema: "NBD",
-                        principalTable: "Employees",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Bids_Employees_EmployeeID",
-                        column: x => x.EmployeeID,
+                        name: "FK_Bids_Employees_DesignerID",
+                        column: x => x.DesignerID,
                         principalSchema: "NBD",
                         principalTable: "Employees",
                         principalColumn: "ID",
@@ -175,6 +168,13 @@ namespace NBDcase.Data.NBDMigrations
                         principalTable: "Projects",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Bids_Employees_SalesID",
+                        column: x => x.SalesID,
+                        principalSchema: "NBD",
+                        principalTable: "Employees",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -239,22 +239,22 @@ namespace NBDcase.Data.NBDMigrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bids_Employee2ID",
+                name: "IX_Bids_DesignerID",
                 schema: "NBD",
                 table: "Bids",
-                column: "Employee2ID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Bids_EmployeeID",
-                schema: "NBD",
-                table: "Bids",
-                column: "EmployeeID");
+                column: "DesignerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bids_ProjectID",
                 schema: "NBD",
                 table: "Bids",
                 column: "ProjectID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bids_SalesID",
+                schema: "NBD",
+                table: "Bids",
+                column: "SalesID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_LaborID",

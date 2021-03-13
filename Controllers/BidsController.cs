@@ -22,7 +22,7 @@ namespace NBDcase.Controllers
         // GET: Bids
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.Bids.Include(b => b.Employee).Include(b => b.Employee2).Include(b => b.Project);
+            var nBDContext = _context.Bids.Include(b => b.Designer).Include(b => b.Project).Include(b => b.Sales);
             return View(await nBDContext.ToListAsync());
         }
 
@@ -35,9 +35,9 @@ namespace NBDcase.Controllers
             }
 
             var bid = await _context.Bids
-                .Include(b => b.Employee)
-                .Include(b => b.Employee2)
+                .Include(b => b.Designer)
                 .Include(b => b.Project)
+                .Include(b => b.Sales)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (bid == null)
             {
@@ -50,9 +50,9 @@ namespace NBDcase.Controllers
         // GET: Bids/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeID"] = new SelectList(_context.Employees, "ID", "FirstName");
-            ViewData["Employee2ID"] = new SelectList(_context.Employees, "ID", "FirstName");
+            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName");
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "ProjectName");
+            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName");
             return View();
         }
 
@@ -61,7 +61,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,BidDate,EstBeginDate,EstComplDate,BidAmount,BidHours,ApprovalbyNBD,ApprovalbyClient,ProjectID,EmployeeID,Employee2ID")] Bid bid)
+        public async Task<IActionResult> Create([Bind("ID,BidDate,EstBeginDate,EstComplDate,BidAmount,BidHours,ApprovalbyNBD,ApprovalbyClient,ProjectID,DesignerID,SalesID")] Bid bid)
         {
             if (ModelState.IsValid)
             {
@@ -69,9 +69,9 @@ namespace NBDcase.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.EmployeeID);
-            ViewData["Employee2ID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.Employee2ID);
+            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "ProjectName", bid.ProjectID);
+            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
             return View(bid);
         }
 
@@ -88,9 +88,9 @@ namespace NBDcase.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.EmployeeID);
-            ViewData["Employee2ID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.Employee2ID);
+            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "ProjectName", bid.ProjectID);
+            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
             return View(bid);
         }
 
@@ -99,7 +99,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,BidDate,EstBeginDate,EstComplDate,BidAmount,BidHours,ApprovalbyNBD,ApprovalbyClient,ProjectID,EmployeeID,Employee2ID")] Bid bid)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,BidDate,EstBeginDate,EstComplDate,BidAmount,BidHours,ApprovalbyNBD,ApprovalbyClient,ProjectID,DesignerID,SalesID")] Bid bid)
         {
             if (id != bid.ID)
             {
@@ -126,9 +126,9 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.EmployeeID);
-            ViewData["Employee2ID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.Employee2ID);
+            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "ProjectName", bid.ProjectID);
+            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
             return View(bid);
         }
 
@@ -141,9 +141,9 @@ namespace NBDcase.Controllers
             }
 
             var bid = await _context.Bids
-                .Include(b => b.Employee)
-                .Include(b => b.Employee2)
+                .Include(b => b.Designer)
                 .Include(b => b.Project)
+                .Include(b => b.Sales)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (bid == null)
             {
