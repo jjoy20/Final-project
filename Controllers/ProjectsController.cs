@@ -23,7 +23,7 @@ namespace NBDcase.Controllers
         // GET: Projects
         public async Task<IActionResult> Index(int? page)
         {
-            var projects = _context.Projects.Include(p => p.Client);
+            var projects = _context.Projects.Include(p => p.Client).Include(p=>p.Bids);
 
             int pageSize = 10; //Change as required
             var PageData = await PaginatedList<Project>.CreateAsync(projects.AsNoTracking(), page ?? 1, pageSize);
