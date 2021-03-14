@@ -477,23 +477,6 @@ namespace NBDcase.Data
                 //}
                 #endregion
 
-                #region Labor
-                //labor
-
-                //if (!context.Labors.Any())
-                //{
-                //    context.Labors.AddRange(
-                //        new Labor
-                //        {
-                //            LaborType = "Production worker",
-                //            LaborCost = 18,
-                //            LaborPrice = 50                         
-                //        }
-                //        );
-                //    context.SaveChanges();
-                //}
-                #endregion
-
                 #region Category
                 //Category
 
