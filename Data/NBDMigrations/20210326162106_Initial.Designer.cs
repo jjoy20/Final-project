@@ -9,7 +9,7 @@ using NBDcase.Data;
 namespace NBDcase.Data.NBDMigrations
 {
     [DbContext(typeof(NBDContext))]
-    [Migration("20210313200618_Initial")]
+    [Migration("20210326162106_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,23 +147,20 @@ namespace NBDcase.Data.NBDMigrations
 
             modelBuilder.Entity("NBDcase.Models.Inventory", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("BidID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("MaterialID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER")
                         .HasMaxLength(255);
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("BidID");
+                    b.HasKey("BidID", "MaterialID");
 
                     b.HasIndex("MaterialID");
 
@@ -210,9 +207,6 @@ namespace NBDcase.Data.NBDMigrations
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Size")
                         .IsRequired()
@@ -275,14 +269,6 @@ namespace NBDcase.Data.NBDMigrations
                     b.Property<int>("ID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("PositionName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(50);
-
-                    b.Property<decimal>("Salary")
-                        .HasColumnType("decimal(19,2)");
-
                     b.HasKey("BidID", "LaborID");
 
                     b.HasIndex("LaborID");
@@ -293,7 +279,7 @@ namespace NBDcase.Data.NBDMigrations
             modelBuilder.Entity("NBDcase.Models.Bid", b =>
                 {
                     b.HasOne("NBDcase.Models.Employee", "Designer")
-                        .WithMany()
+                        .WithMany("Designers")
                         .HasForeignKey("DesignerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -305,7 +291,7 @@ namespace NBDcase.Data.NBDMigrations
                         .IsRequired();
 
                     b.HasOne("NBDcase.Models.Employee", "Sales")
-                        .WithMany()
+                        .WithMany("Sales")
                         .HasForeignKey("SalesID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

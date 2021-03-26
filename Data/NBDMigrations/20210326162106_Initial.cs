@@ -65,7 +65,6 @@ namespace NBDcase.Data.NBDMigrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Code = table.Column<string>(maxLength: 50, nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: false),
                     Size = table.Column<string>(maxLength: 10, nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(19,2)", nullable: false),
@@ -182,15 +181,14 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Quantity = table.Column<int>(maxLength: 255, nullable: false),
                     BidID = table.Column<int>(nullable: false),
-                    MaterialID = table.Column<int>(nullable: false)
+                    MaterialID = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inventories", x => x.ID);
+                    table.PrimaryKey("PK_Inventories", x => new { x.BidID, x.MaterialID });
                     table.ForeignKey(
                         name: "FK_Inventories_Bids_BidID",
                         column: x => x.BidID,
@@ -215,8 +213,6 @@ namespace NBDcase.Data.NBDMigrations
                     BidID = table.Column<int>(nullable: false),
                     LaborID = table.Column<int>(nullable: false),
                     ID = table.Column<int>(nullable: false),
-                    PositionName = table.Column<string>(maxLength: 50, nullable: false),
-                    Salary = table.Column<decimal>(type: "decimal(19,2)", nullable: false),
                     Hours = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -261,12 +257,6 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD",
                 table: "Employees",
                 column: "LaborID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Inventories_BidID",
-                schema: "NBD",
-                table: "Inventories",
-                column: "BidID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inventories_MaterialID",

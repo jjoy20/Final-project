@@ -165,6 +165,66 @@ namespace NBDcase.Data
                 }
                 #endregion
 
+                #region Category
+                //Category
+
+                if (!context.Categories.Any())
+                {
+                    context.Categories.AddRange(
+                        new Category
+                        {
+                            CategoryName = "Plants"
+                        },
+
+                         new Category
+                         {
+                             CategoryName = "Pottery"
+                         },
+
+                          new Category
+                          {
+                              CategoryName = "Materials"
+                          }
+                        );
+                    context.SaveChanges();
+                }
+                #endregion
+
+                #region Material
+                //Material 
+
+                if (!context.Materials.Any())
+                {
+                    context.Materials.AddRange(
+                        new Material
+                        {
+                            Code = "TCP50",
+                            Description = "t/c pot",
+                            Size = "50 gal",
+                            UnitPrice = 53.95m,
+                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
+                        },
+                         new Material
+                         {
+                             Code = "lacco",
+                             Description = "austraasica palm",
+                             Size = "15 gal",
+                             UnitPrice = 450.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                          new Material
+                          {
+                              Code = "CBRK5",
+                              Description = "decorative cedar bark",
+                              Size = "5 cu ft",
+                              UnitPrice = 7.50m,
+                              CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
+                          }
+                        );
+                    context.SaveChanges();
+                }
+                #endregion
+
                 #region labors
                 //labor
                 if (!context.Labors.Any())
@@ -194,16 +254,21 @@ namespace NBDcase.Data
                           new Labor
                           {
                               LaborType = "Sales",
-                              LaborCost = 25m,
-                              LaborPrice = 65m
+                              LaborCost = 50m,
+                              LaborPrice = 75m
+
+                          },
+                          new Labor
+                          {
+                              LaborType = "Botanist",
+                              LaborCost = 50m,
+                              LaborPrice = 75m
 
                           }
                         );
                     context.SaveChanges();
                 }
                 #endregion
-
-
 
                 #region Employees
                 //employee
@@ -300,8 +365,43 @@ namespace NBDcase.Data
                             eMail = "pwils97@gmail.com",
                             Phone = 5469173586,
                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID
-                        }
+                        },
 
+						new Employee
+                        {
+                            FirstName = "Monica",
+                            LastName = "Wilson",
+                            eMail = "mwils97@gmail.com",
+                            Phone = 5469173563,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Production worker").ID
+                        },
+
+						new Employee
+                        {
+                            FirstName = "Bert",
+                            LastName = "Wilson",
+                            eMail = "bwils97@gmail.com",
+                            Phone = 5469173578,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Production worker").ID
+                        },
+
+                        new Employee
+                        {
+                            FirstName = "Erbt",
+                            LastName = "Wilson",
+                            eMail = "ewils17@gmail.com",
+                            Phone = 5469173508,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Heavy equipment operator").ID
+                        },
+
+                         new Employee
+                         {
+                             FirstName = "Terb",
+                             LastName = "Wilson",
+                             eMail = "ewils97@gmail.com",
+                             Phone = 5469173508,
+                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Botanist").ID
+                         }
                         );
                     context.SaveChanges();
                 }
@@ -462,86 +562,62 @@ namespace NBDcase.Data
                 #region Staff
                 //staff 
 
-                //if (!context.Staffs.Any())
-                //{
-                //    context.Staffs.AddRange(
-                //        new Staff
-                //        {
-                //            PositionName = "Designer",
-                //            Salary = 50000,
-                //            Hours = 20,
-                //            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                //        }
-                //        );
-                //    context.SaveChanges();
-                //}
-                #endregion
-
-                #region Category
-                //Category
-
-                //if (!context.Categories.Any())
-                //{
-                //    context.Categories.AddRange(
-                //        new Category
-                //        {
-                //            CategoryName="Plant"
-                //        },
-
-                //         new Category
-                //         {
-                //             CategoryName = "Pottery"
-                //         },
-
-                //          new Category
-                //          {
-                //              CategoryName = "Materials"
-                //          }
-                //        );
-                //    context.SaveChanges();
-                //}
-                #endregion
-
-                #region Material
-                //Material 
-
-                //if (!context.Materials.Any())
-                //{
-                //    context.Materials.AddRange(
-                //        new Material
-                //        {
-                //            Code="TCP50",
-                //            Quantity = 20,
-                //            Description = "t/c pot",
-                //            Size = "50 gal",
-                //            UnitPrice = 54, 
-                //            CategoryID=context.Categories.FirstOrDefault(c=>c.CategoryName=="Pottery").ID
-                //        }
-                //        );
-                //    context.SaveChanges();
-                //}
-                #endregion
+                if (!context.Staffs.Any())
+                {
+                    context.Staffs.AddRange(
+                        new Staff
+                        {
+                            Hours = 20,
+                            LaborID=context.Labors.FirstOrDefault(l=>l.LaborType=="Production worker").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        },
+                        new Staff
+                        {
+                            Hours = 10,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Heavy equipment operator").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        },
+                        new Staff
+                        {
+                            Hours = 5,
+                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        }
+                        );
+                    context.SaveChanges();
+                }
+                #endregion              
 
                 #region Inventory
                 //Inventory 
 
-                //if (!context.Inventories.Any())
-                //{
-                //    context.Inventories.AddRange(
-                //        new Inventory
-                //        {
-                //            Quantity=20,                           
-                //            MaterialID=context.Materials.FirstOrDefault(m=>m.Description=="t/c pot").ID,                           
-                //            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                //        }
-                //        );
-                //    context.SaveChanges();
-                //}
+                if (!context.Inventories.Any())
+                {
+                    context.Inventories.AddRange(
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 10,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "lacco").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        }
+                        );
+                    context.SaveChanges();
+                }
                 #endregion        
 
             }
         }
-
-
     }
 }

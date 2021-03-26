@@ -20,10 +20,6 @@ namespace NBDcase.Models
         [StringLength(50, ErrorMessage = "Code cannot be more than 50 characters long.")]
         public string Code { get; set; }
 
-        [Display(Name = "Quantity")]
-        [Required(ErrorMessage = "You cannot leave quantity blank.")]
-        public int Quantity { get; set; }
-
         [Display(Name = "Description")]
         [Required(ErrorMessage = "You cannot leave description blank.")]
         [StringLength(255, ErrorMessage = "Description cannot be more than 255 characters long.")]
