@@ -204,22 +204,182 @@ namespace NBDcase.Data
                             UnitPrice = 53.95m,
                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
                         },
+                        new Material
+                        {
+                            Code = "GP50",
+                            Description = "granite pot",
+                            Size = "50 gal",
+                            UnitPrice = 110.00m,
+                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
+                        },
+                        new Material
+                        {
+                            Code = "TCF03",
+                            Description = "t/c figurine-swan",
+                            Size = "(blank) ",
+                            UnitPrice = 25.50m,
+                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
+                        },
+                        new Material
+                        {
+                            Code = "MBB30",
+                            Description = "marble bird bath",
+                            Size = "30 in",
+                            UnitPrice = 128.50m,
+                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
+                        },
+                        new Material
+                        {
+                            Code = "GFN48",
+                            Description = "granite fountain",
+                            Size = "48 in",
+                            UnitPrice = 457.50m,
+                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
+                        },
                          new Material
                          {
                              Code = "lacco",
-                             Description = "austraasica palm",
+                             Description = "lacco austraasica",
                              Size = "15 gal",
                              UnitPrice = 450.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "arenga",
+                             Description = "arenga pinnata",
+                             Size = "15 gal",
+                             UnitPrice = 310.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "cham",
+                             Description = "chamaedorea",
+                             Size = "15 gal",
+                             UnitPrice = 300.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "cera",
+                             Description = "ceratozamia molongo",
+                             Size = "14 in",
+                             UnitPrice = 240.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "areca",
+                             Description = "arecastum coco",
+                             Size = "15 gal",
+                             UnitPrice = 275.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "cary",
+                             Description = "caryota mitis",
+                             Size = "7 gal",
+                             UnitPrice = 233.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "grnti5",
+                             Description = "green ti",
+                             Size = "5 gal",
+                             UnitPrice = 92.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "grnti7",
+                             Description = "green ti",
+                             Size = "7 gal",
+                             UnitPrice = 140.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "ficus14",
+                             Description = "ficus green gem",
+                             Size = "14 in",
+                             UnitPrice = 90.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "ficus17",
+                             Description = "ficus green gen",
+                             Size = "17 in",
+                             UnitPrice = 240.00m,
+                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
+                         },
+                         new Material
+                         {
+                             Code = "margi",
+                             Description = "marginata",
+                             Size = "2 gal",
+                             UnitPrice = 45.00m,
                              CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
                          },
                           new Material
                           {
                               Code = "CBRK5",
                               Description = "decorative cedar bark",
-                              Size = "5 cu ft",
+                              Size = "bag(5 cu ft)",
                               UnitPrice = 7.50m,
                               CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                          }
+                          },
+                           new Material
+                           {
+                               Code = "CRGRN",
+                               Description = "crushed granite",
+                               Size = "yard",
+                               UnitPrice = 7.50m,
+                               CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
+                           },
+                            new Material
+                            {
+                                Code = "PGRV",
+                                Description = "pea gravel",
+                                Size = "yard",
+                                UnitPrice = 8.00m,
+                                CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
+                            },
+                             new Material
+                             {
+                                 Code = "GRV1",
+                                 Description = "1 in gravel",
+                                 Size = "yard",
+                                 UnitPrice = 5.90m,
+                                 CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
+                             },
+                              new Material
+                              {
+                                  Code = "TSOIL",
+                                  Description = "top soil",
+                                  Size = "yard",
+                                  UnitPrice = 12.50m,
+                                  CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
+                              },
+                               new Material
+                               {
+                                   Code = "PBLKG",
+                                   Description = "patio block-gray",
+                                   Size = "each",
+                                   UnitPrice = 0.56m,
+                                   CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
+                               },
+                                new Material
+                                {
+                                    Code = "PBLKR",
+                                    Description = "patio block-red",
+                                    Size = "each",
+                                    UnitPrice = 0.56m,
+                                    CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
+                                }
                         );
                     context.SaveChanges();
                 }
