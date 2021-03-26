@@ -11,18 +11,6 @@ namespace NBDcase.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Position Name")]
-        [Required(ErrorMessage = "You cannot leave position name blank.")]
-        [StringLength(50, ErrorMessage = "Position name cannot be more than 50 characters long.")]
-        public string PositionName { get; set; }
-
-        [Required(ErrorMessage = "Salary is required.")]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(19,2)")]
-        [Range(0, 99999999999999999.99, ErrorMessage = "Invalid Salary")]
-        public decimal Salary { get; set; }
-
-
         [Display(Name = "Hours")]
         [Required(ErrorMessage = "Hours is required")]
         public int Hours { get; set; }

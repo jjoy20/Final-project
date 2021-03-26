@@ -61,11 +61,14 @@ namespace NBDcase.Models
         public int ProjectID { get; set; }
         public Project Project { get; set; }
 
+
+        [ForeignKey("Designer")]
         [Required(ErrorMessage = "You must select a Designer EmployeeID.")]
         [Display(Name = "Designer")]
         public int DesignerID { get; set; }
         public Employee Designer { get; set; }
 
+        [ForeignKey("Sales")]
         [Required(ErrorMessage = "You must select a Sales EmployeeID.")]
         [Display(Name = "Sales")]
         public int SalesID { get; set; }

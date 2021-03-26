@@ -42,6 +42,10 @@ namespace NBDcase.Data
             modelBuilder.HasDefaultSchema("NBD");
 
             //Many to Many Intersection
+            modelBuilder.Entity<Inventory>()
+                .HasKey(i => new { i.BidID, i.MaterialID });
+
+            //Many to Many Intersection
             modelBuilder.Entity<Staff>()
                 .HasKey(t => new { t.BidID, t.LaborID });
 
