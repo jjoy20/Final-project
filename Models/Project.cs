@@ -19,6 +19,7 @@ namespace NBDcase.Models
         [Required(ErrorMessage = "You cannot leave project name blank.")]
         [StringLength(50, ErrorMessage = "Project name cannot be more than 50 characters long.")]
         public string ProjectName { get; set; }
+       
 
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
@@ -39,7 +40,13 @@ namespace NBDcase.Models
         [Display(Name = "Client")]
         public int ClientID { get; set; }
         public Client Client { get; set; }
-
+        public string Projectlist
+        {
+            get
+            {
+                return this.ID.ToString() + ". " + this.ProjectName.ToString() ;
+            }
+        }
         public ICollection<Bid> Bids { get; set; }
     }
 }

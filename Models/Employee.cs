@@ -14,8 +14,8 @@ namespace NBDcase.Models
             Designers = new HashSet<Bid>();
             Sales = new HashSet<Bid>();
         }
-        public int ID { get; set; }
 
+        public int ID { get; set; }
 
         [Display(Name = "FirstName")]
         [Required(ErrorMessage = "You cannot leave the first name blank.")]
@@ -50,5 +50,7 @@ namespace NBDcase.Models
 
         [InverseProperty("Sales")]
         public ICollection<Bid> Sales { get; set; }
+
+
     }
 }

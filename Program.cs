@@ -24,6 +24,8 @@ namespace NBDcase
 
                 try
                 {
+                    var identityContext = services.GetRequiredService<ApplicationDbContext>();
+                    ApplicationSeedData.SeedAsync(identityContext, services).Wait();
                     var context = services.GetRequiredService<NBDContext>();
                     context.Database.Migrate();
                     NBDSeedData.Initialize(services);
