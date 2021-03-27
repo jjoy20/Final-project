@@ -182,14 +182,15 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD",
                 columns: table => new
                 {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Quantity = table.Column<int>(maxLength: 255, nullable: false),
                     BidID = table.Column<int>(nullable: false),
-                    MaterialID = table.Column<int>(nullable: false),
-                    ID = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(maxLength: 255, nullable: false)
+                    MaterialID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inventories", x => new { x.BidID, x.MaterialID });
+                    table.PrimaryKey("PK_Inventories", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Inventories_Bids_BidID",
                         column: x => x.BidID,
@@ -211,14 +212,15 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD",
                 columns: table => new
                 {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Hours = table.Column<int>(nullable: false),
                     BidID = table.Column<int>(nullable: false),
-                    LaborID = table.Column<int>(nullable: false),
-                    ID = table.Column<int>(nullable: false),
-                    Hours = table.Column<int>(nullable: false)
+                    LaborID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Staffs", x => new { x.BidID, x.LaborID });
+                    table.PrimaryKey("PK_Staffs", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Staffs_Bids_BidID",
                         column: x => x.BidID,
@@ -260,6 +262,12 @@ namespace NBDcase.Data.NBDMigrations
                 column: "LaborID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Inventories_BidID",
+                schema: "NBD",
+                table: "Inventories",
+                column: "BidID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Inventories_MaterialID",
                 schema: "NBD",
                 table: "Inventories",
@@ -276,6 +284,12 @@ namespace NBDcase.Data.NBDMigrations
                 schema: "NBD",
                 table: "Projects",
                 column: "ClientID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Staffs_BidID",
+                schema: "NBD",
+                table: "Staffs",
+                column: "BidID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Staffs_LaborID",

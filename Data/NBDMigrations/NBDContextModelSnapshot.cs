@@ -145,20 +145,23 @@ namespace NBDcase.Data.NBDMigrations
 
             modelBuilder.Entity("NBDcase.Models.Inventory", b =>
                 {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("BidID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("MaterialID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ID")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER")
                         .HasMaxLength(255);
 
-                    b.HasKey("BidID", "MaterialID");
+                    b.HasKey("ID");
+
+                    b.HasIndex("BidID");
 
                     b.HasIndex("MaterialID");
 
@@ -258,19 +261,22 @@ namespace NBDcase.Data.NBDMigrations
 
             modelBuilder.Entity("NBDcase.Models.Staff", b =>
                 {
-                    b.Property<int>("BidID")
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LaborID")
+                    b.Property<int>("BidID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Hours")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ID")
+                    b.Property<int>("LaborID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("BidID", "LaborID");
+                    b.HasKey("ID");
+
+                    b.HasIndex("BidID");
 
                     b.HasIndex("LaborID");
 

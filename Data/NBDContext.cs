@@ -40,17 +40,7 @@ namespace NBDcase.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("NBD");
-
-
-            //Many to Many Intersection
-            modelBuilder.Entity<Inventory>()
-                .HasKey(i => new { i.BidID, i.MaterialID });
-
-            //Many to Many Intersection
-            modelBuilder.Entity<Staff>()
-                .HasKey(t => new { t.BidID, t.LaborID });
-
-
+            
             //Prevent Cascade Delete 
             modelBuilder.Entity<Client>()
                 .HasMany<Project>(c => c.Projects)
