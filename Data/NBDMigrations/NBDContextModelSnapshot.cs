@@ -206,6 +206,9 @@ namespace NBDcase.Data.NBDMigrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Size")
                         .IsRequired()
                         .HasColumnType("TEXT")

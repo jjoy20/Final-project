@@ -9,7 +9,7 @@ using NBDcase.Data;
 namespace NBDcase.Data.NBDMigrations
 {
     [DbContext(typeof(NBDContext))]
-    [Migration("20210326223236_Initial")]
+    [Migration("20210327162344_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,6 +207,9 @@ namespace NBDcase.Data.NBDMigrations
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Size")
                         .IsRequired()

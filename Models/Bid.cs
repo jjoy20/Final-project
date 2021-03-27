@@ -34,7 +34,7 @@ namespace NBDcase.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EstComplDate { get; set; }
 
-        [Display(Name = "Cost")]
+        [Display(Name = "Budget")]
         [Required(ErrorMessage = "BidAmount is required.")]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(19,2)")]
@@ -55,20 +55,23 @@ namespace NBDcase.Models
         [Display(Name = "Approval By Client")]
         public bool ApprovalbyClient { get; set; }
 
-
+        public string bidlist
+        {
+            get
+            {
+                return this.ID.ToString() + ". Bid start from " + this.EstBeginDate.ToString("d")+" to "+this.EstComplDate.ToString("d") + " with budget of"+this.BidAmount.ToString("c");
+            }
+        }
         [Required(ErrorMessage = "You must select a ProjectID.")]
         [Display(Name = "Project")]
         public int ProjectID { get; set; }
         public Project Project { get; set; }
 
-
-        [ForeignKey("Designer")]
         [Required(ErrorMessage = "You must select a Designer EmployeeID.")]
         [Display(Name = "Designer")]
         public int DesignerID { get; set; }
         public Employee Designer { get; set; }
 
-        [ForeignKey("Sales")]
         [Required(ErrorMessage = "You must select a Sales EmployeeID.")]
         [Display(Name = "Sales")]
         public int SalesID { get; set; }

@@ -18,4 +18,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Databases\" />
+    <Folder Include="Data\Databases\" />
+  </ItemGroup>
+
 </Project>

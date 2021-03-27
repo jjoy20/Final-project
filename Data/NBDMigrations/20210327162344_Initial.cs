@@ -65,6 +65,7 @@ namespace NBDcase.Data.NBDMigrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Code = table.Column<string>(maxLength: 50, nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: false),
                     Size = table.Column<string>(maxLength: 10, nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(19,2)", nullable: false),
