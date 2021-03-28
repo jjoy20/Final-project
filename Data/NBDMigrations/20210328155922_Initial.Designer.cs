@@ -9,7 +9,7 @@ using NBDcase.Data;
 namespace NBDcase.Data.NBDMigrations
 {
     [DbContext(typeof(NBDContext))]
-    [Migration("20210327205701_Initial")]
+    [Migration("20210328155922_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

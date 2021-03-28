@@ -424,6 +424,19 @@ namespace NBDcase.Data
                               LaborCost = 50m,
                               LaborPrice = 75m
 
+                          },
+                          new Labor
+                          {
+                              LaborType = "Manager",
+                              LaborCost = 50m,
+                              LaborPrice = 75m
+
+                          },
+                          new Labor
+                          {
+                              LaborType = "Admin",
+                              LaborCost = 50m,
+                              LaborPrice = 75m
                           }
                         );
                     context.SaveChanges();
@@ -561,7 +574,24 @@ namespace NBDcase.Data
                              eMail = "ewils97@gmail.com",
                              Phone = 5469173508,
                              LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Botanist").ID
+                         },
+                         new Employee
+                         {
+                             FirstName="Kerri",
+                             LastName= "Williams",
+                             eMail="kwilliams@gmail.com",
+                             Phone=5469176883,
+                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Manager").ID
+                         },
+                         new Employee
+                         {
+                             FirstName = "Cheryl",
+                             LastName = "Poy",
+                             eMail = "cpoy@gmail.com",
+                             Phone = 5469176873,
+                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Admin").ID
                          }
+
                         );
                     context.SaveChanges();
                 }
