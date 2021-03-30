@@ -801,7 +801,289 @@ namespace NBDcase.Data
                             Quantity = 5,
                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        }
+                        },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TSOIL").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "GRV1").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 10,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
+                         },
+                        new Inventory
+                        {
+                            Quantity = 10,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "lacco").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 15,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 30,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TSOIL").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 10,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "GRV1").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 16,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
+                         },
+                         new Inventory
+                         {
+                             Quantity = 20,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "arenga").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
+                         },
+                        new Inventory
+                        {
+                            Quantity = 10,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cham").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cera").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "areca").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 24,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
+                         },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cary").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 20,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cary").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
+                         },
+                        new Inventory
+                        {
+                            Quantity = 10,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti5").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti7").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 21,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
+                         },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 5,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "margi").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
+                         },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 32,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
+                         },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 5,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "margi").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
+                         },
+                          new Inventory
+                          {
+                              Quantity = 5,
+                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
+                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
+                          },
+                           new Inventory
+                           {
+                               Quantity = 18,
+                               MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                               BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
+                           },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 5,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "margi").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
+                         },
+                          new Inventory
+                          {
+                              Quantity = 5,
+                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
+                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
+                          },
+                            new Inventory
+                            {
+                                Quantity = 26,
+                                MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                                BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
+                            },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CRGRN").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 5,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PGRV").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
+                         },
+                          new Inventory
+                          {
+                              Quantity = 5,
+                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "GRV1").ID,
+                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
+                          },
+                           new Inventory
+                           {
+                               Quantity = 13,
+                               MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                               BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
+                           },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TSOIL").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 5,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PBLKG").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
+                         },
+                          new Inventory
+                          {
+                              Quantity = 5,
+                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PBLKR").ID,
+                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
+                          },
+                           new Inventory
+                           {
+                               Quantity = 16,
+                               MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
+                               BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
+                           },
+                        new Inventory
+                        {
+                            Quantity = 5,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
+                        },
+                        new Inventory
+                        {
+                            Quantity = 20,
+                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti5").ID,
+                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
+                        },
+                         new Inventory
+                         {
+                             Quantity = 5,
+                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti7").ID,
+                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
+                         },
+                          new Inventory
+                          {
+                              Quantity = 5,
+                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PBLKR").ID,
+                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
+                          }
                         );
                     context.SaveChanges();
                 }
