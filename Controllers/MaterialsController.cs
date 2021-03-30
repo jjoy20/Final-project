@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using NBDcase.Models;
 
 namespace NBDcase.Controllers
 {
-    [Authorize]
     public class MaterialsController : Controller
     {
         private readonly NBDContext _context;
@@ -59,7 +57,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Code,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
+        public async Task<IActionResult> Create([Bind("ID,Code,Description,Size,UnitPrice,CategoryID")] Material material)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +91,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Code,Quantity,Description,Size,UnitPrice,CategoryID")] Material material)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Code,Description,Size,UnitPrice,CategoryID")] Material material)
         {
             if (id != material.ID)
             {
