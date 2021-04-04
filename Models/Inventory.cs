@@ -12,7 +12,7 @@ namespace NBDcase.Models
 
         [Display(Name = "Quantity")]
         [Required(ErrorMessage = "You cannot leave Quantity blank.")]
-        [StringLength(255, ErrorMessage = "Quantity cannot be more than 255 characters long.")]
+        
         public int Quantity { get; set; }
 
         [Required(ErrorMessage = "You must select a Bid.")]

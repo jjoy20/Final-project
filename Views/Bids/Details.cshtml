@@ -10,7 +10,10 @@
     <h4>Bid Information</h4>
     <hr />
     <div class="container" style="background-color:aquamarine;">
+       
         <dl class="row">
+
+
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.BidDate)
             </dt>
@@ -72,20 +75,48 @@
                 @Html.DisplayFor(model => model.Sales.FirstName)
             </dd>
             <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BidEmployees)
+            </dt>
+            <dd class="col-sm-10">
+                @{ int inCount1 = Model.BidEmployees.Count;
+                    if (inCount1 > 0)
+                    {
+                        string firstinv = "\t\t" + Model.BidEmployees.FirstOrDefault().Employee.FirstName+ "\t\t -" + Model.BidEmployees.FirstOrDefault().Employee.Labor.LaborType;
+                        if (inCount1 > 1)
+                        {
+                            string InList = "";
+                            var c = Model.BidEmployees.ToList();
+                            for (int i = 1; i < inCount1; i++)
+                            {
+                                InList += "\t\t" + c[i].Employee.FirstName + "\t\t-" + c[i].Employee.Labor.LaborType+ " <br />";
+                            }
+                            <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.ID)">
+                                @firstinv.. <span class="badge badge-info">@inCount1</span>
+                            </a>
+                            <div class="collapse" id="collapseSum@(Model.ID)">
+                                @Html.Raw(InList)
+                            </div> }
+                        else
+                        {
+                            @firstinv }
+                    } }
+                @*For help with Bootstrap Collapse see: https://getbootstrap.com/docs/4.3/components/collapse/*@
+            </dd>
+            <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Inventories)
             </dt>
             <dd class="col-sm-10">
                 @{ int inCount = Model.Inventories.Count;
                     if (inCount > 0)
                     {
-                        string firstinv = "\t\tMateriel " + Model.Inventories.FirstOrDefault().Material.Description + "\t\tUnit Price :" + Model.Inventories.FirstOrDefault().Material.UnitPrice.ToString("c") + "\t\tQuantity:" + Model.Inventories.FirstOrDefault().Quantity;
+                        string firstinv = "\t\t" + Model.Inventories.FirstOrDefault().Material.Description + "\t\t :" + Model.Inventories.FirstOrDefault().Material.UnitPrice.ToString("c") + "\t\t,Quantity:" + Model.Inventories.FirstOrDefault().Quantity;
                         if (inCount > 1)
                         {
                             string InList = "";
                             var c = Model.Inventories.ToList();
                             for (int i = 1; i < inCount; i++)
                             {
-                                InList += "\t\tMateriel :" + c[i].Material.Description + "\t\tUnit Price:" + c[i].Material.UnitPrice.ToString("c") + "\t\tQuantity:" + c[i].Quantity + " <br />";
+                                InList += "\t\t" + c[i].Material.Description + "\t\t:" + c[i].Material.UnitPrice.ToString("c") + "\t\t,Quantity:" + c[i].Quantity + " <br />";
                             }
                             <a class="" role="button" data-toggle="collapse" href="#collapseSum@(Model.ID)" aria-expanded="false" aria-controls="collapseSum@(Model.ID)">
                                 @firstinv.. <span class="badge badge-info">@inCount</span>
@@ -119,9 +150,9 @@
 
             </div>
         </dl>
-        </div>
     </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

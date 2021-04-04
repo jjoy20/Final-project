@@ -13,6 +13,7 @@ namespace NBDcase.Models
         {
             Staffs = new HashSet<Staff>();
             Inventories = new HashSet<Inventory>();
+            BidEmployees = new HashSet<BidEmployees>();
         }
 
         public int ID { get; set; }
@@ -83,5 +84,7 @@ namespace NBDcase.Models
 
         [Display(Name = "Inventories")]
         public ICollection<Inventory> Inventories { get; set; }
+        [Display(Name = "BidEmployees")]
+        public ICollection<BidEmployees> BidEmployees{ get; set; }
     }
 }

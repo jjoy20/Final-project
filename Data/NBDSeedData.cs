@@ -165,226 +165,6 @@ namespace NBDcase.Data
                 }
                 #endregion
 
-                #region Category
-                //Category
-
-                if (!context.Categories.Any())
-                {
-                    context.Categories.AddRange(
-                        new Category
-                        {
-                            CategoryName = "Plants"
-                        },
-
-                         new Category
-                         {
-                             CategoryName = "Pottery"
-                         },
-
-                          new Category
-                          {
-                              CategoryName = "Materials"
-                          }
-                        );
-                    context.SaveChanges();
-                }
-                #endregion
-
-                #region Material
-                //Material 
-
-                if (!context.Materials.Any())
-                {
-                    context.Materials.AddRange(
-                        new Material
-                        {
-                            Code = "TCP50",
-                            Description = "t/c pot",
-                            Size = "50 gal",
-                            UnitPrice = 53.95m,
-                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
-                        },
-                        new Material
-                        {
-                            Code = "GP50",
-                            Description = "granite pot",
-                            Size = "50 gal",
-                            UnitPrice = 110.00m,
-                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
-                        },
-                        new Material
-                        {
-                            Code = "TCF03",
-                            Description = "t/c figurine-swan",
-                            Size = "(blank) ",
-                            UnitPrice = 25.50m,
-                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
-                        },
-                        new Material
-                        {
-                            Code = "MBB30",
-                            Description = "marble bird bath",
-                            Size = "30 in",
-                            UnitPrice = 128.50m,
-                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
-                        },
-                        new Material
-                        {
-                            Code = "GFN48",
-                            Description = "granite fountain",
-                            Size = "48 in",
-                            UnitPrice = 457.50m,
-                            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
-                        },
-                         new Material
-                         {
-                             Code = "lacco",
-                             Description = "lacco austraasica",
-                             Size = "15 gal",
-                             UnitPrice = 450.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "arenga",
-                             Description = "arenga pinnata",
-                             Size = "15 gal",
-                             UnitPrice = 310.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "cham",
-                             Description = "chamaedorea",
-                             Size = "15 gal",
-                             UnitPrice = 300.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "cera",
-                             Description = "ceratozamia molongo",
-                             Size = "14 in",
-                             UnitPrice = 240.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "areca",
-                             Description = "arecastum coco",
-                             Size = "15 gal",
-                             UnitPrice = 275.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "cary",
-                             Description = "caryota mitis",
-                             Size = "7 gal",
-                             UnitPrice = 233.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "grnti5",
-                             Description = "green ti",
-                             Size = "5 gal",
-                             UnitPrice = 92.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "grnti7",
-                             Description = "green ti",
-                             Size = "7 gal",
-                             UnitPrice = 140.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "ficus14",
-                             Description = "ficus green gem",
-                             Size = "14 in",
-                             UnitPrice = 90.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "ficus17",
-                             Description = "ficus green gen",
-                             Size = "17 in",
-                             UnitPrice = 240.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                         new Material
-                         {
-                             Code = "margi",
-                             Description = "marginata",
-                             Size = "2 gal",
-                             UnitPrice = 45.00m,
-                             CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Plants").ID
-                         },
-                          new Material
-                          {
-                              Code = "CBRK5",
-                              Description = "decorative cedar bark",
-                              Size = "bag(5 cu ft)",
-                              UnitPrice = 7.50m,
-                              CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                          },
-                           new Material
-                           {
-                               Code = "CRGRN",
-                               Description = "crushed granite",
-                               Size = "yard",
-                               UnitPrice = 7.50m,
-                               CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                           },
-                            new Material
-                            {
-                                Code = "PGRV",
-                                Description = "pea gravel",
-                                Size = "yard",
-                                UnitPrice = 8.00m,
-                                CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                            },
-                             new Material
-                             {
-                                 Code = "GRV1",
-                                 Description = "1 in gravel",
-                                 Size = "yard",
-                                 UnitPrice = 5.90m,
-                                 CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                             },
-                              new Material
-                              {
-                                  Code = "TSOIL",
-                                  Description = "top soil",
-                                  Size = "yard",
-                                  UnitPrice = 12.50m,
-                                  CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                              },
-                               new Material
-                               {
-                                   Code = "PBLKG",
-                                   Description = "patio block-gray",
-                                   Size = "each",
-                                   UnitPrice = 0.56m,
-                                   CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                               },
-                                new Material
-                                {
-                                    Code = "PBLKR",
-                                    Description = "patio block-red",
-                                    Size = "each",
-                                    UnitPrice = 0.56m,
-                                    CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Materials").ID
-                                }
-                        );
-                    context.SaveChanges();
-                }
-                #endregion
-
                 #region labors
                 //labor
                 if (!context.Labors.Any())
@@ -414,34 +194,16 @@ namespace NBDcase.Data
                           new Labor
                           {
                               LaborType = "Sales",
-                              LaborCost = 50m,
-                              LaborPrice = 75m
+                              LaborCost = 25m,
+                              LaborPrice = 65m
 
-                          },
-                          new Labor
-                          {
-                              LaborType = "Botanist",
-                              LaborCost = 50m,
-                              LaborPrice = 75m
-
-                          },
-                          new Labor
-                          {
-                              LaborType = "Manager",
-                              LaborCost = 50m,
-                              LaborPrice = 75m
-
-                          },
-                          new Labor
-                          {
-                              LaborType = "Admin",
-                              LaborCost = 50m,
-                              LaborPrice = 75m
                           }
                         );
                     context.SaveChanges();
                 }
                 #endregion
+
+
 
                 #region Employees
                 //employee
@@ -538,59 +300,7 @@ namespace NBDcase.Data
                             eMail = "pwils97@gmail.com",
                             Phone = 5469173586,
                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID
-                        },
-
-						new Employee
-                        {
-                            FirstName = "Monica",
-                            LastName = "Wilson",
-                            eMail = "mwils97@gmail.com",
-                            Phone = 5469173563,
-                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Production worker").ID
-                        },
-
-						new Employee
-                        {
-                            FirstName = "Bert",
-                            LastName = "Wilson",
-                            eMail = "bwils97@gmail.com",
-                            Phone = 5469173578,
-                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Production worker").ID
-                        },
-
-                        new Employee
-                        {
-                            FirstName = "Erbt",
-                            LastName = "Wilson",
-                            eMail = "ewils17@gmail.com",
-                            Phone = 5469173508,
-                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Heavy equipment operator").ID
-                        },
-
-                         new Employee
-                         {
-                             FirstName = "Terb",
-                             LastName = "Wilson",
-                             eMail = "ewils97@gmail.com",
-                             Phone = 5469173508,
-                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Botanist").ID
-                         },
-                         new Employee
-                         {
-                             FirstName="Kerri",
-                             LastName= "Williams",
-                             eMail="kwilliams@gmail.com",
-                             Phone=5469176883,
-                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Manager").ID
-                         },
-                         new Employee
-                         {
-                             FirstName = "Cheryl",
-                             LastName = "Poy",
-                             eMail = "cpoy@gmail.com",
-                             Phone = 5469176873,
-                             LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Admin").ID
-                         }
+                        }
 
                         );
                     context.SaveChanges();
@@ -752,344 +462,86 @@ namespace NBDcase.Data
                 #region Staff
                 //staff 
 
-                if (!context.Staffs.Any())
-                {
-                    context.Staffs.AddRange(
-                        new Staff
-                        {
-                            Hours = 20,
-                            LaborID=context.Labors.FirstOrDefault(l=>l.LaborType=="Production worker").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        },
-                        new Staff
-                        {
-                            Hours = 10,
-                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Heavy equipment operator").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        },
-                        new Staff
-                        {
-                            Hours = 5,
-                            LaborID = context.Labors.FirstOrDefault(l => l.LaborType == "Designer Consultant").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        }
-                        );
-                    context.SaveChanges();
-                }
-                #endregion              
+                //if (!context.Staffs.Any())
+                //{
+                //    context.Staffs.AddRange(
+                //        new Staff
+                //        {
+                //            PositionName = "Designer",
+                //            Salary = 50000,
+                //            Hours = 20,
+                //            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
+
+                #region Category
+                //Category
+
+                //if (!context.Categories.Any())
+                //{
+                //    context.Categories.AddRange(
+                //        new Category
+                //        {
+                //            CategoryName="Plant"
+                //        },
+
+                //         new Category
+                //         {
+                //             CategoryName = "Pottery"
+                //         },
+
+                //          new Category
+                //          {
+                //              CategoryName = "Materials"
+                //          }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
+
+                #region Material
+                ////Material
+
+                //if (!context.Materials.Any())
+                //{
+                //    context.Materials.AddRange(
+                //        new Material
+                //        {
+                //            Code = "TCP50",
+                //            Quantity = 20,
+                //            Description = "t/c pot",
+                //            Size = "50 gal",
+                //            UnitPrice = 54,
+                //            CategoryID = context.Categories.FirstOrDefault(c => c.CategoryName == "Pottery").ID
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
+                #endregion
 
                 #region Inventory
                 //Inventory 
 
-                if (!context.Inventories.Any())
-                {
-                    context.Inventories.AddRange(
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 10,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "lacco").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TSOIL").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "GRV1").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 10,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
-                         },
-                        new Inventory
-                        {
-                            Quantity = 10,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "lacco").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 15,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 30,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TSOIL").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 10,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "GRV1").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1997-11-01")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 16,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
-                         },
-                         new Inventory
-                         {
-                             Quantity = 20,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "arenga").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
-                         },
-                        new Inventory
-                        {
-                            Quantity = 10,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cham").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cera").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "areca").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2001-06-01")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 24,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
-                         },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cary").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 20,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "cary").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
-                         },
-                        new Inventory
-                        {
-                            Quantity = 10,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti5").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti7").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-24")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 21,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
-                         },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 5,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "margi").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
-                         },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2006-04-07")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 32,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
-                         },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 5,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "margi").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
-                         },
-                          new Inventory
-                          {
-                              Quantity = 5,
-                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
-                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2012-04-29")).ID
-                          },
-                           new Inventory
-                           {
-                               Quantity = 18,
-                               MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                               BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
-                           },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 5,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "margi").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
-                         },
-                          new Inventory
-                          {
-                              Quantity = 5,
-                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CBRK5").ID,
-                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2007-07-01")).ID
-                          },
-                            new Inventory
-                            {
-                                Quantity = 26,
-                                MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                                BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
-                            },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus14").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "CRGRN").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 5,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PGRV").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
-                         },
-                          new Inventory
-                          {
-                              Quantity = 5,
-                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "GRV1").ID,
-                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2015-03-18")).ID
-                          },
-                           new Inventory
-                           {
-                               Quantity = 13,
-                               MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                               BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
-                           },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TSOIL").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 5,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PBLKG").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
-                         },
-                          new Inventory
-                          {
-                              Quantity = 5,
-                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PBLKR").ID,
-                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2011-02-20")).ID
-                          },
-                           new Inventory
-                           {
-                               Quantity = 16,
-                               MaterialID = context.Materials.FirstOrDefault(m => m.Code == "TCP50").ID,
-                               BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
-                           },
-                        new Inventory
-                        {
-                            Quantity = 5,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "ficus17").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
-                        },
-                        new Inventory
-                        {
-                            Quantity = 20,
-                            MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti5").ID,
-                            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
-                        },
-                         new Inventory
-                         {
-                             Quantity = 5,
-                             MaterialID = context.Materials.FirstOrDefault(m => m.Code == "grnti7").ID,
-                             BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
-                         },
-                          new Inventory
-                          {
-                              Quantity = 5,
-                              MaterialID = context.Materials.FirstOrDefault(m => m.Code == "PBLKR").ID,
-                              BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("2018-09-04")).ID
-                          }
-                        );
-                    context.SaveChanges();
-                }
+                //if (!context.Inventories.Any())
+                //{
+                //    context.Inventories.AddRange(
+                //        new Inventory
+                //        {
+                //            Quantity=20,                           
+                //            MaterialID=context.Materials.FirstOrDefault(m=>m.Description=="t/c pot").ID,                           
+                //            BidID = context.Bids.FirstOrDefault(b => b.BidDate == DateTime.Parse("1996-05-06")).ID
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
                 #endregion        
 
             }
         }
+
+
     }
 }

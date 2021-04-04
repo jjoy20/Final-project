@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using NBDcase.Models;
 
 namespace NBDcase.Controllers
 {
+    [Authorize]
     public class StaffsController : Controller
     {
         private readonly NBDContext _context;
@@ -49,7 +51,7 @@ namespace NBDcase.Controllers
         // GET: Staffs/Create
         public IActionResult Create()
         {
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID");
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist");
             ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType");
             return View();
         }
@@ -59,7 +61,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Hours,BidID,LaborID")] Staff staff)
+        public async Task<IActionResult> Create([Bind("ID,PositionName,Salary,Hours,BidID,LaborID")] Staff staff)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +69,7 @@ namespace NBDcase.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", staff.BidID);
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist", staff.BidID);
             ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType", staff.LaborID);
             return View(staff);
         }
@@ -85,7 +87,7 @@ namespace NBDcase.Controllers
             {
                 return NotFound();
             }
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", staff.BidID);
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist", staff.BidID);
             ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType", staff.LaborID);
             return View(staff);
         }
@@ -95,7 +97,7 @@ namespace NBDcase.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Hours,BidID,LaborID")] Staff staff)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,PositionName,Salary,Hours,BidID,LaborID")] Staff staff)
         {
             if (id != staff.BidID)
             {
@@ -122,7 +124,7 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", staff.BidID);
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist", staff.BidID);
             ViewData["LaborID"] = new SelectList(_context.Labors, "ID", "LaborType", staff.LaborID);
             return View(staff);
         }

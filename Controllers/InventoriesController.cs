@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using NBDcase.Models;
 
 namespace NBDcase.Controllers
 {
+    [Authorize]
     public class InventoriesController : Controller
     {
         private readonly NBDContext _context;
@@ -37,7 +39,7 @@ namespace NBDcase.Controllers
             var inventory = await _context.Inventories
                 .Include(i => i.Bid)
                 .Include(i => i.Material)
-                .FirstOrDefaultAsync(m => m.BidID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (inventory == null)
             {
                 return NotFound();
@@ -49,8 +51,8 @@ namespace NBDcase.Controllers
         // GET: Inventories/Create
         public IActionResult Create()
         {
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID");
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code");
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist");
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description");
             return View();
         }
 
@@ -67,8 +69,8 @@ namespace NBDcase.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code", inventory.MaterialID);
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist", inventory.BidID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -85,8 +87,8 @@ namespace NBDcase.Controllers
             {
                 return NotFound();
             }
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code", inventory.MaterialID);
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist", inventory.BidID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -97,7 +99,7 @@ namespace NBDcase.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Quantity,BidID,MaterialID")] Inventory inventory)
         {
-            if (id != inventory.BidID)
+            if (id != inventory.ID)
             {
                 return NotFound();
             }
@@ -111,7 +113,7 @@ namespace NBDcase.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InventoryExists(inventory.BidID))
+                    if (!InventoryExists(inventory.ID))
                     {
                         return NotFound();
                     }
@@ -122,8 +124,8 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "ID", inventory.BidID);
-            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Code", inventory.MaterialID);
+            ViewData["BidID"] = new SelectList(_context.Bids, "ID", "bidlist", inventory.BidID);
+            ViewData["MaterialID"] = new SelectList(_context.Materials, "ID", "Description", inventory.MaterialID);
             return View(inventory);
         }
 
@@ -138,7 +140,7 @@ namespace NBDcase.Controllers
             var inventory = await _context.Inventories
                 .Include(i => i.Bid)
                 .Include(i => i.Material)
-                .FirstOrDefaultAsync(m => m.BidID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (inventory == null)
             {
                 return NotFound();
@@ -160,7 +162,7 @@ namespace NBDcase.Controllers
 
         private bool InventoryExists(int id)
         {
-            return _context.Inventories.Any(e => e.BidID == id);
+            return _context.Inventories.Any(e => e.ID == id);
         }
     }
 }

@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using NBDcase.Data;
 using NBDcase.Models;
 using NBDcase.Utilities;
-using sol_Job_Bank.Utilities;
 
 namespace NBDcase.Controllers
 {
@@ -32,7 +31,10 @@ namespace NBDcase.Controllers
                        .ThenInclude(b => b.Client)
                        .Include(b => b.Sales)
                        .Include(b => b.Inventories)
+                       
                        .ThenInclude(b => b.Material)
+                       .Include(b => b.BidEmployees)
+                       
                        select b;
 
 
@@ -105,6 +107,7 @@ namespace NBDcase.Controllers
             }
             
             //Set sort for next time
+
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
             var PageData = await PaginatedList<Bid>.CreateAsync(bids.AsNoTracking(), page ?? 1, pageSize);
@@ -125,7 +128,11 @@ namespace NBDcase.Controllers
                 .Include(b => b.Project)
                 .ThenInclude(b=>b.Client)
                 .Include(b => b.Sales)
+                .Include(b => b.BidEmployees)
+                 .ThenInclude(b => b.Employee)
+                 .ThenInclude(b => b.Labor)
                 .Include(b => b.Inventories)
+
                 .ThenInclude(b => b.Material)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (bid == null)
@@ -139,10 +146,10 @@ namespace NBDcase.Controllers
         // GET: Bids/Create
         public IActionResult Create()
         {
-            
-            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName");
+            PopulateDropDownLists();
+           // ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName");
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "Projectlist");
-            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName");
+          //  ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName");
             return View();
         }
 
@@ -159,9 +166,10 @@ namespace NBDcase.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
+            PopulateDropDownLists(bid);
+          //  ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "Projectlist", bid.ProjectID);
-            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
+         //   ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
             return View(bid);
         }
 
@@ -178,9 +186,10 @@ namespace NBDcase.Controllers
             {
                 return NotFound();
             }
-            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
+            PopulateDropDownLists(bid);
+          //  ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "ProjectName", bid.ProjectID);
-            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
+          //  ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
             return View(bid);
         }
 
@@ -216,9 +225,10 @@ namespace NBDcase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
+            PopulateDropDownLists(bid);
+          // ViewData["DesignerID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.DesignerID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ID", "Projectlist", bid.ProjectID);
-            ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
+           // ViewData["SalesID"] = new SelectList(_context.Employees, "ID", "FirstName", bid.SalesID);
             return View(bid);
         }
 
@@ -257,6 +267,31 @@ namespace NBDcase.Controllers
         private bool BidExists(int id)
         {
             return _context.Bids.Any(e => e.ID == id);
+        }
+        private void PopulateDropDownLists(Bid bid = null)
+        {
+            ViewData["DesignerID"] = Designerlist(bid?.DesignerID);
+            ViewData["SalesID"] = Salelist(bid?.SalesID);
+        }
+        private SelectList Designerlist(int? id)
+        {
+            var dQuery = from d in _context.Employees
+                         join s in _context.Labors
+                         on d.LaborID equals s.ID
+                         where s.LaborType == "Designer" || s.LaborType == "Designer Consultant"
+                         orderby d.FirstName
+                         select new {ID=d.ID,FullName=d.FirstName+ ' '+d.LastName };
+            return new SelectList(dQuery, "ID", "FullName", id);
+        }
+        private SelectList Salelist(int? id)
+        {
+            var dQuery = from d in _context.Employees
+                         join s in _context.Labors
+                         on d.LaborID equals s.ID
+                         where s.LaborType == "Sales"
+                         orderby d.FirstName
+                         select new { ID = d.ID, FullName = d.FirstName + ' ' + d.LastName };
+            return new SelectList(dQuery, "ID", "FullName", id);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,13 +8,8 @@ namespace NBDcase.Models
 {
     public class Employee
     {
-        public Employee()
-        {
-            Designers = new HashSet<Bid>();
-            Sales = new HashSet<Bid>();
-        }
-
         public int ID { get; set; }
+
 
         [Display(Name = "FirstName")]
         [Required(ErrorMessage = "You cannot leave the first name blank.")]
@@ -43,14 +37,5 @@ namespace NBDcase.Models
         [Display(Name ="LaborID")]
         public int LaborID { get; set; }
         public Labor Labor { get; set; }
-
-
-        [InverseProperty("Designer")]
-        public ICollection<Bid> Designers { get; set; }
-
-        [InverseProperty("Sales")]
-        public ICollection<Bid> Sales { get; set; }
-
-
     }
 }

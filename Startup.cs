@@ -1,13 +1,18 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using NBDcase.Data;
+using NBDcase.Utilities;
+using NBDcase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +38,10 @@ namespace NBDcase
             services.AddDbContext<NBDContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("NBDContext")));
+
+            //To give access to IHttpContextAccessor for Audit Data with IAuditable
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddDefaultIdentity<IdentityUser>(options => options
                 .SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
@@ -69,6 +78,16 @@ namespace NBDcase
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
+
+            //For email service
+            services.AddSingleton<IEmailConfiguration>(Configuration
+                .GetSection("EmailConfiguration").Get<EmailConfiguration>());
+
+            //For the Identity System
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            //With added methods for production use.
+            services.AddTransient<IMyEmailSender, MyEmailSender>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace sol_Job_Bank.Utilities
+namespace NBDcase.Utilities
 {
     public static class CookieHelper
     {

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using NBDcase.Models;
 
 namespace NBDcase.Data
 {
@@ -12,5 +13,6 @@ namespace NBDcase.Data
             : base(options)
         {
         }
+        
     }
 }

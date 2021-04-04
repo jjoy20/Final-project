@@ -13,7 +13,7 @@ namespace NBDcase.Data
         {
             //Create Roles
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string[] roleNames = { "Designer", "Manager" };
+            string[] roleNames = { "Designer", "Manager", "Admin" };
             IdentityResult roleResult;
             foreach (var roleName in roleNames)
             {
@@ -25,7 +25,7 @@ namespace NBDcase.Data
             }
             //Create Users
             var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
-            if (userManager.FindByEmailAsync("admin1@outlook.com").Result == null)
+            if (userManager.FindByEmailAsync("truongtv0121@gmail.com").Result == null)
             {
                 IdentityUser user = new IdentityUser
                 {
@@ -38,6 +38,21 @@ namespace NBDcase.Data
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user, "Manager").Wait();
+                }
+            }
+            if (userManager.FindByEmailAsync("admin1@outlook.com").Result == null)
+            {
+                IdentityUser user = new IdentityUser
+                {
+                    UserName = "admin1@outlook.com",
+                    Email = "admin1@outlook.com"
+                };
+
+                IdentityResult result = userManager.CreateAsync(user, "password").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "Admin").Wait();
                 }
             }
             if (userManager.FindByEmailAsync("daltond@gmail.com").Result == null)
