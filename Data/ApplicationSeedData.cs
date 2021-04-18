@@ -13,7 +13,7 @@ namespace NBDcase.Data
         {
             //Create Roles
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string[] roleNames = { "Designer", "Manager", "Admin" };
+            string[] roleNames = { "Designer", "Manager", "Admin", "Sales" };
             IdentityResult roleResult;
             foreach (var roleName in roleNames)
             {

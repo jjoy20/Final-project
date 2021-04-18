@@ -1,26 +1,166 @@
+@model NBDcase.ViewModels.HomeVM;
 @{ ViewData["Title"] = "Home Page"; }
-<header class="masthead bg-primary text-white text-center">
-    <div class="container d-flex align-items-center flex-column">
-        <!-- Masthead Avatar Image-->
-        <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="" />
-        <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">NATURAL BY DESIGN</h1>
-        <!-- Icon Divider-->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Masthead Subheading-->
-        <p class="masthead-subheading font-weight-light mb-0">Client - Project - Bid</p>
-    </div>
-</header>
-<section class="page-section" id="contact">
-    <div class="container">
+@if (User.IsInRole("Sales"))
+{
+<div style="padding: 10px; border: 5px solid black; margin-top: 30px; display: grid; grid-gap: 25px; width: 1500px; align-self: center; border-radius: 10px;">
 
+    <!--Clients-->
+    <div style="grid-column-start: 1; grid-column-end: 2; border: 3px solid black; text-align: center; padding: 15px; border-radius: 10px;">
+        <h3>Clients</h3>
+
+        <a asp-action="Create" asp-controller="Clients">Add new Client</a>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Clients[0].ClientName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Clients[0].Contact)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Clients[0].Phone)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Clients)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClientName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Contact)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Clients" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-action="Details" asp-controller="Clients" asp-route-id="@item.ID">Details</a>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-action="Index" asp-controller="Clients">View all Clients</a>
     </div>
-</section>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <!--Projects-->
+    <div style="grid-column-start: 2; grid-column-end: 3; border: 3px solid black; text-align: center; padding: 15px; border-radius: 10px;">
+        <h3>Projects</h3>
+
+        <a asp-action="Create" asp-controller="Projects">Add new Project</a>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Projects[0].ProjectName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Projects[0].ClientID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Projects[0].ProjectSite)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Projects)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Client.ClientName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProjectSite)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Projects" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-action="Details" asp-controller="Projects" asp-route-id="@item.ID">Details</a>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-action="Index" asp-controller="Projects">View all Projects</a>
+    </div>
+    <!--Bids-->
+    <div style="grid-column-start: 3; grid-column-end: 4; border: 3px solid black; text-align: center; padding: 15px; border-radius: 10px;">
+        <h3>Bids</h3>
+
+        <a asp-action="Create" asp-controller="Bids">Add new Bid</a>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bids[0].Project)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bids[0].EstBeginDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bids[0].BidAmount)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Bids)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.ProjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EstBeginDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BidAmount)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Bids" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-action="Details" asp-controller="Bids" asp-route-id="@item.ID">Details</a>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-action="Index" asp-controller="Bids">View all Bids</a>
+    </div>
+
+
 </div>
+}
+@if (!User.IsInRole("Sales"))
+{
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="" />
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase mb-0">NATURAL BY DESIGN</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">Client - Project - Bid</p>
+        </div>
+    </header>
+}
+
+
